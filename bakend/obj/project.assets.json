@@ -103,7 +103,8 @@
       "Microsoft.CodeAnalysis.Analyzers/3.0.0": {
         "type": "package",
         "build": {
-          "build/_._": {}
+          "build/Microsoft.CodeAnalysis.Analyzers.props": {},
+          "build/Microsoft.CodeAnalysis.Analyzers.targets": {}
         }
       },
       "Microsoft.CodeAnalysis.Common/3.8.0": {
@@ -8981,6 +8982,7 @@
     "net5.0": [
       "BCrypt.Net-Next >= 4.0.2",
       "Microsoft.AspNet.WebApi.Core >= 5.2.7",
+      "Microsoft.CodeAnalysis.Analyzers >= 3.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.6",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.6",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.2",
@@ -8989,26 +8991,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\German\\.nuget\\packages\\": {}
+    "C:\\Users\\xtr\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\German\\Desktop\\project\\ProyectRastreo\\Proyecto-de-rastreo\\bakend\\bakend.csproj",
+      "projectUniqueName": "C:\\Users\\xtr\\Desktop\\Proyecto\\Proyecto-de-rastreo\\bakend\\bakend.csproj",
       "projectName": "bakend",
-      "projectPath": "C:\\Users\\German\\Desktop\\project\\ProyectRastreo\\Proyecto-de-rastreo\\bakend\\bakend.csproj",
-      "packagesPath": "C:\\Users\\German\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\German\\Desktop\\project\\ProyectRastreo\\Proyecto-de-rastreo\\bakend\\obj\\",
+      "projectPath": "C:\\Users\\xtr\\Desktop\\Proyecto\\Proyecto-de-rastreo\\bakend\\bakend.csproj",
+      "packagesPath": "C:\\Users\\xtr\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\xtr\\Desktop\\Proyecto\\Proyecto-de-rastreo\\bakend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\German\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\xtr\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -9034,6 +9034,12 @@
           "Microsoft.AspNet.WebApi.Core": {
             "target": "Package",
             "version": "[5.2.7, )"
+          },
+          "Microsoft.CodeAnalysis.Analyzers": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[3.0.0, )"
           },
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -9064,7 +9070,7 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48" 
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -9076,7 +9082,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   },

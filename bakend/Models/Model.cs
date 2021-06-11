@@ -40,7 +40,7 @@ namespace modelos
     {
         [Key]
         public int Usuarioid {get; set;}
-        [Required]
+        
         public string nombre {get; set;}
         [EmailAddress,Required]
         public string correo {get; set;}
