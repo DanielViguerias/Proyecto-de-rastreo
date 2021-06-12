@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using modelos;
 using bakend.DTO;
 using Tools;
-
-
+using System.Security.Claims;
 
 namespace bakend.Controllers
 {
     
     [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
 
     public class UsuarioController : ControllerBase
@@ -89,8 +90,8 @@ namespace bakend.Controllers
         {
             
             try
-            {
-                int idUsuario = 4;
+            {   var Identity = HttpContext.User.Identity as ClaimsIdentity;
+                int idUsuario = JwtConfigurator.GetTokenIdUsuario(Identity);
                 string passwordEncriptado = Encrypt.GetSHA256(cambiarPassword.passwordAnterior);
                 
                 //var usuario = await _context.Usuario.Where(x => x.Usuarioid == idUsuario && x.password == passwordEncriptado).FirstOrDefaultAsync();

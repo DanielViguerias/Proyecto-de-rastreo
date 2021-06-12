@@ -5,6 +5,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using modelos;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System;
 
 namespace bakend
 {
@@ -25,7 +29,7 @@ namespace bakend
             services.AddControllers();
             services.AddDbContext<ApplicationDbContext>(
         options => options.UseSqlServer(Configuration.GetConnectionString("DbCon")));
-        
+        // Se agrega CORS
         services.AddCors(options =>
                     {
                         options.AddPolicy( name: MyAllowSpecificOrigins,
@@ -38,6 +42,21 @@ namespace bakend
                                                                 .AllowAnyMethod();
                                         });
                     });
+
+        // se agrega Authentication
+        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                                    .AddJwtBearer(options => options.TokenValidationParameters = new TokenValidationParameters{
+
+                                        ValidateIssuer = true,
+                                        ValidateAudience = true,
+                                        ValidateLifetime = true,
+                                        ValidateIssuerSigningKey = true,
+                                        ValidIssuer = Configuration["Jwt:Issuer"],
+                                        ValidAudience = Configuration["Jwt:Audience"],
+                                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:SecretKey"])),
+                                        ClockSkew = TimeSpan.Zero 
+                                    });
+
                 services.AddSwaggerGen();
             
         }
@@ -60,7 +79,7 @@ namespace bakend
             app.UseRouting();
 
             app.UseCors(MyAllowSpecificOrigins);
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

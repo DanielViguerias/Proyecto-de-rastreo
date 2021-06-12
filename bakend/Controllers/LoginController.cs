@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using modelos;
 using Tools;
 
@@ -14,11 +15,12 @@ namespace BackEnd.Controllers
     public class LoginController : ControllerBase
     {
       
-
+        private readonly IConfiguration _config;
         private readonly ApplicationDbContext _context;
-        public LoginController(ApplicationDbContext context)
+        public LoginController(ApplicationDbContext context, IConfiguration config)
         {
             _context = context;
+            _config = config;
         }
    public async Task<ActionResult<IEnumerable<usuario>>> GetAllAsyn()
         {
@@ -42,11 +44,9 @@ namespace BackEnd.Controllers
                 {
                     return BadRequest(new { message = "Usuario o contraseña invalidos" });
                 }
-
+                string tokenString = JwtConfigurator.GetToken(user, _config);
                 return Ok(new { 
-                    id = user.Usuarioid,
-                    nombre = user.nombre,
-                    role = user.role
+                   token = tokenString
                     });
             }
             catch (Exception ex)

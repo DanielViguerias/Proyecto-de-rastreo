@@ -685,3 +685,4 @@ C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\obj\Debug\net5.0\bakend
 C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\obj\Debug\net5.0\ref\bakend.dll
 C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\obj\Debug\net5.0\bakend.pdb
 C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\obj\Debug\net5.0\bakend.genruntimeconfig.cache
+C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
