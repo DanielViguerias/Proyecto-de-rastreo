@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using bakend.Tools;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -27,14 +28,25 @@ namespace bakend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ent_sal>>> GetEntradasSalidas()
         {
-            return await _context.EntradasSalidas.ToListAsync();
+            try
+            {
+                return await _context.EntradasSalidas.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+            
         }
 
         // GET: api/EntSal/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ent_sal>> Getent_sal(int id)
         {
-            var ent_sal = await _context.EntradasSalidas.FindAsync(id);
+            try
+            {
+                var ent_sal = await _context.EntradasSalidas.FindAsync(id);
 
             if (ent_sal == null)
             {
@@ -42,6 +54,13 @@ namespace bakend.Controllers
             }
 
             return ent_sal;
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+            
         }
 
         // PUT: api/EntSal/5
@@ -60,7 +79,7 @@ namespace bakend.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
                 if (!ent_salExists(id))
                 {
@@ -68,6 +87,7 @@ namespace bakend.Controllers
                 }
                 else
                 {
+                    ELog.Add(ex.ToString());
                     throw;
                 }
             }
@@ -80,17 +100,28 @@ namespace bakend.Controllers
         [HttpPost]
         public async Task<ActionResult<ent_sal>> Postent_sal(ent_sal ent_sal)
         {
-            _context.EntradasSalidas.Add(ent_sal);
+            try
+            {
+                _context.EntradasSalidas.Add(ent_sal);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("Getent_sal", new { id = ent_sal.EntSalId }, ent_sal);
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+            
         }
 
         // DELETE: api/EntSal/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Deleteent_sal(int id)
         {
-            var ent_sal = await _context.EntradasSalidas.FindAsync(id);
+            try
+            {
+                 var ent_sal = await _context.EntradasSalidas.FindAsync(id);
             if (ent_sal == null)
             {
                 return NotFound();
@@ -100,6 +131,13 @@ namespace bakend.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+           
         }
 
         private bool ent_salExists(int id)

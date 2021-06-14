@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using bakend.Tools;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -27,14 +28,25 @@ namespace bakend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<movimiento>>> Getmovimientos()
         {
-            return await _context.movimientos.ToListAsync();
+            try
+            {
+                return await _context.movimientos.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+            
         }
 
         // GET: api/Movimiento/5
         [HttpGet("{id}")]
         public async Task<ActionResult<movimiento>> Getmovimiento(int id)
         {
-            var movimiento = await _context.movimientos.FindAsync(id);
+            try
+            {
+                 var movimiento = await _context.movimientos.FindAsync(id);
 
             if (movimiento == null)
             {
@@ -42,6 +54,13 @@ namespace bakend.Controllers
             }
 
             return movimiento;
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+           
         }
 
         // PUT: api/Movimiento/5
@@ -60,7 +79,7 @@ namespace bakend.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
                 if (!movimientoExists(id))
                 {
@@ -68,6 +87,7 @@ namespace bakend.Controllers
                 }
                 else
                 {
+                    ELog.Add(ex.ToString());
                     throw;
                 }
             }
@@ -80,17 +100,28 @@ namespace bakend.Controllers
         [HttpPost]
         public async Task<ActionResult<movimiento>> Postmovimiento(movimiento movimiento)
         {
-            _context.movimientos.Add(movimiento);
+            try
+            {
+                _context.movimientos.Add(movimiento);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("Getmovimiento", new { id = movimiento.MovId }, movimiento);
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+            
         }
 
         // DELETE: api/Movimiento/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Deletemovimiento(int id)
         {
-            var movimiento = await _context.movimientos.FindAsync(id);
+            try
+            {
+                var movimiento = await _context.movimientos.FindAsync(id);
             if (movimiento == null)
             {
                 return NotFound();
@@ -100,6 +131,13 @@ namespace bakend.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+            
         }
 
         private bool movimientoExists(int id)

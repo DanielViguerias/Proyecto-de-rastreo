@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using bakend.Tools;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -24,7 +25,16 @@ namespace BackEnd.Controllers
         }
    public async Task<ActionResult<IEnumerable<usuario>>> GetAllAsyn()
         {
-            return await _context.usuarios.ToListAsync();
+            try
+            {
+               return await _context.usuarios.ToListAsync(); 
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+            
         }
         [HttpPost]
 
@@ -51,6 +61,7 @@ namespace BackEnd.Controllers
             }
             catch (Exception ex)
             {
+                ELog.Add(ex.ToString());
                 return BadRequest(ex.Message);
             }
         }

@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using bakend.Tools;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using modelos;
@@ -27,21 +27,39 @@ namespace bakend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<punto>>> Getpuntos()
         {
-            return await _context.puntos.ToListAsync();
+            try
+            {
+                return await _context.puntos.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+
         }
 
         // GET: api/Punto/5
         [HttpGet("{id}")]
         public async Task<ActionResult<punto>> Getpunto(int id)
         {
-            var punto = await _context.puntos.FindAsync(id);
-
-            if (punto == null)
+            try
             {
-                return NotFound();
+                var punto = await _context.puntos.FindAsync(id);
+
+                if (punto == null)
+                {
+                    return NotFound();
+                }
+
+                return punto;
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
             }
 
-            return punto;
         }
 
         // PUT: api/Punto/5
@@ -49,6 +67,7 @@ namespace bakend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Putpunto(int id, punto punto)
         {
+
             if (id != punto.PuntoId)
             {
                 return BadRequest();
@@ -80,26 +99,44 @@ namespace bakend.Controllers
         [HttpPost]
         public async Task<ActionResult<punto>> Postpunto(punto punto)
         {
-            _context.puntos.Add(punto);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.puntos.Add(punto);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("Getpunto", new { id = punto.PuntoId }, punto);
+                return CreatedAtAction("Getpunto", new { id = punto.PuntoId }, punto);
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+
         }
 
         // DELETE: api/Punto/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Deletepunto(int id)
         {
-            var punto = await _context.puntos.FindAsync(id);
-            if (punto == null)
+            try
             {
-                return NotFound();
+                var punto = await _context.puntos.FindAsync(id);
+                if (punto == null)
+                {
+                    return NotFound();
+                }
+
+                _context.puntos.Remove(punto);
+                await _context.SaveChangesAsync();
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
             }
 
-            _context.puntos.Remove(punto);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
         }
 
         private bool puntoExists(int id)

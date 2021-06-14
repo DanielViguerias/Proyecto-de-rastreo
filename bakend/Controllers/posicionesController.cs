@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using bakend.Tools;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -27,21 +28,39 @@ namespace bakend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<posicion>>> Getposiciones()
         {
-            return await _context.posiciones.ToListAsync();
+            try
+            {
+                return await _context.posiciones.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+
         }
 
         // GET: api/posiciones/5
         [HttpGet("{id}")]
         public async Task<ActionResult<posicion>> Getposicion(int id)
         {
-            var posicion = await _context.posiciones.FindAsync(id);
-
-            if (posicion == null)
+            try
             {
-                return NotFound();
+                var posicion = await _context.posiciones.FindAsync(id);
+
+                if (posicion == null)
+                {
+                    return NotFound();
+                }
+
+                return posicion;
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
             }
 
-            return posicion;
         }
 
         // PUT: api/posiciones/5
@@ -60,7 +79,7 @@ namespace bakend.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
                 if (!posicionExists(id))
                 {
@@ -68,6 +87,7 @@ namespace bakend.Controllers
                 }
                 else
                 {
+                    ELog.Add(ex.ToString());
                     throw;
                 }
             }
@@ -80,26 +100,44 @@ namespace bakend.Controllers
         [HttpPost]
         public async Task<ActionResult<posicion>> Postposicion(posicion posicion)
         {
-            _context.posiciones.Add(posicion);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.posiciones.Add(posicion);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("Getposicion", new { id = posicion.PosId }, posicion);
+                return CreatedAtAction("Getposicion", new { id = posicion.PosId }, posicion);
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+
         }
 
         // DELETE: api/posiciones/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Deleteposicion(int id)
         {
-            var posicion = await _context.posiciones.FindAsync(id);
-            if (posicion == null)
+            try
             {
-                return NotFound();
+                var posicion = await _context.posiciones.FindAsync(id);
+                if (posicion == null)
+                {
+                    return NotFound();
+                }
+
+                _context.posiciones.Remove(posicion);
+                await _context.SaveChangesAsync();
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
             }
 
-            _context.posiciones.Remove(posicion);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
         }
 
         private bool posicionExists(int id)

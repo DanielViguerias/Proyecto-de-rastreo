@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using bakend.Tools;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -27,7 +28,16 @@ namespace bakend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<lugar>>> Getlugares()
         {
-            return await _context.lugares.ToListAsync();
+            try
+            {
+              return await _context.lugares.ToListAsync();  
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+            
         }
 
         // GET: api/Lugar/5
@@ -35,13 +45,21 @@ namespace bakend.Controllers
         public async Task<ActionResult<lugar>> Getlugar(int id)
         {
             var lugar = await _context.lugares.FindAsync(id);
-
-            if (lugar == null)
+            try
+            {
+                if (lugar == null)
             {
                 return NotFound();
             }
 
             return lugar;
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+            
         }
 
         // PUT: api/Lugar/5
@@ -49,18 +67,27 @@ namespace bakend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Putlugar(int id, lugar lugar)
         {
-            if (id != lugar.LugarId)
+            try
+            {
+                 if (id != lugar.LugarId)
             {
                 return BadRequest();
             }
 
             _context.Entry(lugar).State = EntityState.Modified;
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+           
 
             try
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
                 if (!lugarExists(id))
                 {
@@ -68,6 +95,7 @@ namespace bakend.Controllers
                 }
                 else
                 {
+                    ELog.Add(ex.ToString());
                     throw;
                 }
             }
@@ -80,17 +108,29 @@ namespace bakend.Controllers
         [HttpPost]
         public async Task<ActionResult<lugar>> Postlugar(lugar lugar)
         {
-            _context.lugares.Add(lugar);
+
+            try
+            {
+                _context.lugares.Add(lugar);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("Getlugar", new { id = lugar.LugarId }, lugar);
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+            
         }
 
         // DELETE: api/Lugar/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Deletelugar(int id)
         {
-            var lugar = await _context.lugares.FindAsync(id);
+            try
+            {
+                var lugar = await _context.lugares.FindAsync(id);
             if (lugar == null)
             {
                 return NotFound();
@@ -100,6 +140,13 @@ namespace bakend.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+            
         }
 
         private bool lugarExists(int id)

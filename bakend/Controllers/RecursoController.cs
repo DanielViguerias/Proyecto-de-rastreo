@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using bakend.Tools;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using modelos;
@@ -27,21 +27,39 @@ namespace bakend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<recurso>>> Getrecursos()
         {
-            return await _context.recursos.ToListAsync();
+            try
+            {
+                return await _context.recursos.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+
         }
 
         // GET: api/Recurso/5
         [HttpGet("{id}")]
         public async Task<ActionResult<recurso>> Getrecurso(int id)
         {
-            var recurso = await _context.recursos.FindAsync(id);
 
-            if (recurso == null)
+            try
             {
-                return NotFound();
+                var recurso = await _context.recursos.FindAsync(id);
+                if (recurso == null)
+                {
+                    return NotFound();
+                }
+
+                return recurso;
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
             }
 
-            return recurso;
         }
 
         // PUT: api/Recurso/5
@@ -80,17 +98,28 @@ namespace bakend.Controllers
         [HttpPost]
         public async Task<ActionResult<recurso>> Postrecurso(recurso recurso)
         {
-            _context.recursos.Add(recurso);
+            try
+            {
+                 _context.recursos.Add(recurso);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("Getrecurso", new { id = recurso.RecursoId }, recurso);
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+           
         }
 
         // DELETE: api/Recurso/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Deleterecurso(int id)
         {
-            var recurso = await _context.recursos.FindAsync(id);
+            try
+            {
+                 var recurso = await _context.recursos.FindAsync(id);
             if (recurso == null)
             {
                 return NotFound();
@@ -100,6 +129,13 @@ namespace bakend.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+           
         }
 
         private bool recursoExists(int id)

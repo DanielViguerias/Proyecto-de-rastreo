@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using bakend.Tools;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -27,7 +28,16 @@ namespace bakend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<geolug>>> Getgeolugares()
         {
-            return await _context.geolugares.ToListAsync();
+            try
+            {
+              return await _context.geolugares.ToListAsync();  
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+            
         }
 
         // GET: api/Geolug/5
@@ -35,13 +45,21 @@ namespace bakend.Controllers
         public async Task<ActionResult<geolug>> Getgeolug(int id)
         {
             var geolug = await _context.geolugares.FindAsync(id);
-
-            if (geolug == null)
+            try
+            {
+                if (geolug == null)
             {
                 return NotFound();
             }
 
             return geolug;
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+            
         }
 
         // PUT: api/Geolug/5
@@ -60,7 +78,7 @@ namespace bakend.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
                 if (!geolugExists(id))
                 {
@@ -68,6 +86,7 @@ namespace bakend.Controllers
                 }
                 else
                 {
+                    ELog.Add(ex.ToString());
                     throw;
                 }
             }
@@ -80,17 +99,28 @@ namespace bakend.Controllers
         [HttpPost]
         public async Task<ActionResult<geolug>> Postgeolug(geolug geolug)
         {
-            _context.geolugares.Add(geolug);
+            try
+            {
+              _context.geolugares.Add(geolug);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("Getgeolug", new { id = geolug.GLId }, geolug);
+            return CreatedAtAction("Getgeolug", new { id = geolug.GLId }, geolug);  
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+            
         }
 
         // DELETE: api/Geolug/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Deletegeolug(int id)
         {
-            var geolug = await _context.geolugares.FindAsync(id);
+            try
+            {
+                var geolug = await _context.geolugares.FindAsync(id);
             if (geolug == null)
             {
                 return NotFound();
@@ -100,6 +130,13 @@ namespace bakend.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                throw;
+            }
+            
         }
 
         private bool geolugExists(int id)
