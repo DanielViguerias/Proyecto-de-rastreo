@@ -35,14 +35,13 @@ namespace bakend
                         options.AddPolicy( name: MyAllowSpecificOrigins,
                                         builder =>
                                         {
-                                            builder.WithOrigins("http://localhost",
-                                                                "http://www.contoso.com")
+                                            builder.WithOrigins("http://localhost"         )
                                                                 .AllowAnyOrigin()
                                                                 .AllowAnyHeader()
                                                                 .AllowAnyMethod();
                                         });
                     });
-
+ services.AddSwaggerGen();
         // se agrega Authentication
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                                     .AddJwtBearer(options => options.TokenValidationParameters = new TokenValidationParameters{
@@ -57,7 +56,7 @@ namespace bakend
                                         ClockSkew = TimeSpan.Zero 
                                     });
 
-                services.AddSwaggerGen();
+               
             
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

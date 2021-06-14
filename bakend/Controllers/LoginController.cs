@@ -23,6 +23,8 @@ namespace BackEnd.Controllers
             _context = context;
             _config = config;
         }
+        
+        [NonAction]
    public async Task<ActionResult<IEnumerable<usuario>>> GetAllAsyn()
         {
             try

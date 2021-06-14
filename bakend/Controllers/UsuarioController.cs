@@ -25,6 +25,7 @@ namespace bakend.Controllers
     {
         private readonly ApplicationDbContext _context;
 
+        [NonAction]
         public async Task SaveUser(usuario usuario)
         {
             _context.Add(usuario);
