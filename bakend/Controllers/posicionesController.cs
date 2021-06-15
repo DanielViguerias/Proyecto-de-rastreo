@@ -92,7 +92,7 @@ namespace bakend.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok("Actualizado con exito");
         }
 
         // POST: api/posiciones
@@ -130,7 +130,7 @@ namespace bakend.Controllers
                 _context.posiciones.Remove(posicion);
                 await _context.SaveChangesAsync();
 
-                return NoContent();
+                return Ok("Eliminado con exito");
             }
             catch (Exception ex)
             {

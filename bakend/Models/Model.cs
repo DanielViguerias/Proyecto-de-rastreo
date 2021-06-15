@@ -39,7 +39,8 @@ namespace modelos
     public class usuario
     {
         [Key]
-        public int Usuarioid {get; set;}
+        
+        public int? Usuarioid {get; set;}
         
         public string nombre {get; set;}
         [EmailAddress,Required]

@@ -91,7 +91,7 @@ namespace bakend.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok("Actualizado con exito");
         }
 
         // POST: api/Punto
@@ -129,7 +129,7 @@ namespace bakend.Controllers
                 _context.puntos.Remove(punto);
                 await _context.SaveChangesAsync();
 
-                return NoContent();
+                return Ok("Eliminado con exito");
             }
             catch (Exception ex)
             {

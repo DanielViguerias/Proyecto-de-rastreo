@@ -92,7 +92,10 @@ namespace bakend.Controllers
 
             try
             {
+                string hpass = Encrypt.GetSHA256(usuario.password);
+                usuario.password = (hpass);
                 await _context.SaveChangesAsync();
+            
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -107,7 +110,8 @@ namespace bakend.Controllers
                 }
             }
 
-            return NoContent();
+            
+            return Ok("Actualizado con exito");
         }
         //[Route("CambiarPassowrd")]
         [HttpPut("cambiarpass")]
@@ -189,7 +193,7 @@ namespace bakend.Controllers
             _context.usuarios.Remove(usuario);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok("Eliminado con exito");
             }
             catch (Exception ex)
             {

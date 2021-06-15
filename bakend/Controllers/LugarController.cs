@@ -100,7 +100,7 @@ namespace bakend.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok("Actualizado con exito");
         }
 
         // POST: api/Lugar
@@ -139,7 +139,7 @@ namespace bakend.Controllers
             _context.lugares.Remove(lugar);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+           return Ok("Eliminado con exito");
             }
             catch (Exception ex)
             {

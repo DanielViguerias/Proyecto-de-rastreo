@@ -92,7 +92,7 @@ namespace bakend.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok("Actualizado con exito");
         }
 
         // POST: api/EntSal
@@ -130,7 +130,7 @@ namespace bakend.Controllers
             _context.EntradasSalidas.Remove(ent_sal);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+          return Ok("Eliminado con exito");
             }
             catch (Exception ex)
             {
