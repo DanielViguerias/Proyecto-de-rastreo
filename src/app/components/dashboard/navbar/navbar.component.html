@@ -1,0 +1,86 @@
+<!-- <nav class="navbar navbar-expand-lg " style="background-color: darkblue;">
+    <a class="navbar-brand" href="#">Sistema de Rastreo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+        < class="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll" style="max-height: 100px;">
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/dashboard">Mapa <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard/cambiarPassword">Cambiar Password</a>
+            </li>
+            <!-- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+            Link
+          </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </li> -->
+
+        
+     
+<!-- </nav> --> 
+<header>
+    <mat-toolbar class="mat-elevation-z8">
+      <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened">
+            menu
+        </mat-icon>
+        <mat-icon *ngIf="sidenav.opened">
+            close
+        </mat-icon>
+    </button>
+      <span routerLink="home">Sukrasoft<mat-icon>business</mat-icon></span>
+    
+      <!-- <a mat-button routerLink="home">Home</a>
+      <a mat-button routerLink="users">Usuarios</a>
+      <a mat-button routerLink="resources">Recursos</a>
+      <a mat-button routerLink="reports">Reportes</a>
+      <a mat-button routerLink="places">Lugares</a>
+      <div class="spacer"></div> 
+      <a mat-raised-button color="accent">Cerrar sesión</a> -->
+    </mat-toolbar>
+  </header>
+  
+  <mat-sidenav-container>
+  
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <button [routerLink]="['home']" mat-button class="menu-button">
+      <mat-icon>home</mat-icon>
+      <span>Inicio</span>
+    </button>
+   <button [routerLink]="['usuario']" mat-button class="menu-button">
+     <mat-icon>person</mat-icon>
+     <span>Usuarios</span>
+   </button>  
+   <button [routerLink]="['lugar']" mat-button class="menu-button">
+     <mat-icon>place</mat-icon>
+     <span>Lugares</span>
+   </button>
+   <button [routerLink]="['reporte']" mat-button class="menu-button">
+     <mat-icon>report</mat-icon>
+     <span>  Reportes</span>
+   </button>
+   <button [routerLink]="['recurso']" mat-button class="menu-button">
+     <mat-icon>phone</mat-icon>
+     <span>Recursos</span>
+   </button>
+   <button [routerLink]="['inicio']" mat-button class="menu-button">
+     <mat-icon>logout</mat-icon>
+     <span>Cerrar sesión</span>
+   </button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div>
+        <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+  </mat-sidenav-container>
