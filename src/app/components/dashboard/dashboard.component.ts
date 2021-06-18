@@ -10,7 +10,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class DashboardComponent implements OnInit {
   
-  constructor(private jwtHelper: JwtHelperService, private router: Router) { }
+  constructor() { }
   
  
   ngOnInit(): void {

@@ -1,6 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { AuthService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private observer: BreakpointObserver) { }
+  constructor(private observer: BreakpointObserver,
+    public authservice:AuthService) { }
   @ViewChild(MatSidenav)
   sidenav!:MatSidenav;
   ngOnInit(): void {
@@ -25,5 +27,6 @@ export class NavbarComponent implements OnInit {
       }
     });
   } 
+  
 
 }

@@ -1,5 +1,5 @@
 export class usuario{
     id? :number
-    nombreUsuario?: string;
+    correo?: string;
     password?: string;
 }

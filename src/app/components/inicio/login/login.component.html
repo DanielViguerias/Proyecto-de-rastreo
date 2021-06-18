@@ -5,14 +5,14 @@
                 <h3>Inicio de Sesión</h3>
 
                 <app-loading *ngIf="loading"></app-loading>
-                <form [formGroup]="login" (ngSubmit)=onlogin(login) style="padding-top: 10px;">
+                <form [formGroup]="login" (ngSubmit)=log() style="padding-top: 10px;">
                     <div class="form-group" style="text-align: start;">
-                        <input type="email" class="form-control" placeholder="Correo" formControlName="usuario" maxlength="30">
-                        <span class="text-danger ml-2" *ngIf="login.controls['usuario'].errors?.required && login.controls['usuario'].touched">
+                        <input type="email" class="form-control" placeholder="Correo" formControlName="correo" maxlength="30">
+                        <span class="text-danger ml-2" *ngIf="login.controls['correo'].errors?.required && login.controls['correo'].touched">
                     Es necesario ingresar un correo electrónico</span>
                     </div>
                     <div class="form-group" style="text-align: start;">
-                    <span class="text-danger ml-2" *ngIf="login.controls['usuario'].errors?.email">
+                    <span class="text-danger ml-2" *ngIf="login.controls['correo'].errors?.email">
                     Es necesario ingresar un correo electrónico</span>
                 </div>
                         
