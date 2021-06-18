@@ -44,7 +44,7 @@ namespace bakend.Controllers
             try
             {
                 
-                return await _context.usuarios.ToListAsync();
+                return await _context.usuarios.Where(x => x.active==true).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -63,9 +63,9 @@ namespace bakend.Controllers
             {
                 var usuario = await _context.usuarios.FindAsync(id);
 
-                if (usuario == null)
+                if (usuario == null || usuario.active==false)
                 {
-                    return NotFound();
+                    return NotFound("No existe el usuario");
                 }
 
                 return usuario;
@@ -85,7 +85,7 @@ namespace bakend.Controllers
         {
             if (id != usuario.Usuarioid)
             {
-                return BadRequest();
+                return BadRequest("Usuario no encontrado");
             }
 
             _context.Entry(usuario).State = EntityState.Modified;
@@ -97,15 +97,15 @@ namespace bakend.Controllers
                 await _context.SaveChangesAsync();
             
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
                 if (!usuarioExists(id))
                 {
-                    return NotFound();
+                    return NotFound("Usuario no encontrado");
                 }
                 else
                 {
-
+                     ELog.Add(ex.ToString());
                     throw;
                 }
             }
@@ -185,12 +185,13 @@ namespace bakend.Controllers
             try
             {
                 var usuario = await _context.usuarios.FindAsync(id);
-            if (usuario == null)
+            if (usuario == null || usuario.active == false)
             {
-                return NotFound();
+                return NotFound("El usuario no existe. No se hace nada");
             }
 
-            _context.usuarios.Remove(usuario);
+            usuario.active = false;
+            _context.usuarios.Update(usuario);
             await _context.SaveChangesAsync();
 
             return Ok("Eliminado con exito");

@@ -30,7 +30,7 @@ namespace bakend.Controllers
         {
             try
             {
-              return await _context.lugares.ToListAsync();  
+              return await _context.lugares.Where(x => x.active==true).ToListAsync();  
             }
             catch (Exception ex)
             {
@@ -47,9 +47,9 @@ namespace bakend.Controllers
             var lugar = await _context.lugares.FindAsync(id);
             try
             {
-                if (lugar == null)
+                if (lugar == null || lugar.active==false)
             {
-                return NotFound();
+                return NotFound("No se encontro el lugar");
             }
 
             return lugar;
@@ -69,9 +69,9 @@ namespace bakend.Controllers
         {
             try
             {
-                 if (id != lugar.LugarId)
+                 if ((id != lugar.LugarId ) || (lugar.active = false))
             {
-                return BadRequest();
+                return BadRequest("Lugar no encontrado");
             }
 
             _context.Entry(lugar).State = EntityState.Modified;
@@ -91,7 +91,7 @@ namespace bakend.Controllers
             {
                 if (!lugarExists(id))
                 {
-                    return NotFound();
+                    return NotFound("No se encontro el lugar");
                 }
                 else
                 {
@@ -131,12 +131,12 @@ namespace bakend.Controllers
             try
             {
                 var lugar = await _context.lugares.FindAsync(id);
-            if (lugar == null)
+            if (lugar == null || lugar.active == false)
             {
-                return NotFound();
+                return NotFound("No se encontro el lugar");
             }
-
-            _context.lugares.Remove(lugar);
+            lugar.active = false;
+            _context.lugares.Update(lugar);
             await _context.SaveChangesAsync();
 
            return Ok("Eliminado con exito");

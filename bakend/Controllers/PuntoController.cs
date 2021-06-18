@@ -29,7 +29,7 @@ namespace bakend.Controllers
         {
             try
             {
-                return await _context.puntos.ToListAsync();
+                return await _context.puntos.Where(x => x.active==true).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -47,9 +47,9 @@ namespace bakend.Controllers
             {
                 var punto = await _context.puntos.FindAsync(id);
 
-                if (punto == null)
+                if (punto == null  || punto.active==false)
                 {
-                    return NotFound();
+                    return NotFound("El punto no existe");
                 }
 
                 return punto;
@@ -70,7 +70,7 @@ namespace bakend.Controllers
 
             if (id != punto.PuntoId)
             {
-                return BadRequest();
+                return BadRequest("No se encontro el punto");
             }
 
             _context.Entry(punto).State = EntityState.Modified;
@@ -79,14 +79,15 @@ namespace bakend.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
                 if (!puntoExists(id))
                 {
-                    return NotFound();
+                    return NotFound("No se encontro el punto");
                 }
                 else
                 {
+                     ELog.Add(ex.ToString());
                     throw;
                 }
             }
@@ -121,12 +122,12 @@ namespace bakend.Controllers
             try
             {
                 var punto = await _context.puntos.FindAsync(id);
-                if (punto == null)
+                if (punto == null || punto.active == false)
                 {
-                    return NotFound();
+                    return NotFound("Punto no encontrado");
                 }
-
-                _context.puntos.Remove(punto);
+            punto.active = false;
+            _context.puntos.Update(punto);
                 await _context.SaveChangesAsync();
 
                 return Ok("Eliminado con exito");

@@ -10,8 +10,8 @@ using modelos;
 namespace bakend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210525152204_3da")]
-    partial class _3da
+    [Migration("20210618155801_junio18")]
+    partial class junio18
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,10 +28,8 @@ namespace bakend.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<byte>("Entrada")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("tinyint");
+                    b.Property<DateTime>("Entrada")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("GLId")
                         .HasColumnType("int");
@@ -39,19 +37,13 @@ namespace bakend.Migrations
                     b.Property<int>("RecursoId")
                         .HasColumnType("int");
 
-                    b.Property<byte>("Salida")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("tinyint");
+                    b.Property<DateTime>("Salida")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("active")
                         .HasColumnType("bit");
 
                     b.HasKey("EntSalId");
-
-                    b.HasIndex("GLId");
-
-                    b.HasIndex("RecursoId");
 
                     b.ToTable("EntradasSalidas");
                 });
@@ -66,15 +58,13 @@ namespace bakend.Migrations
                     b.Property<int>("LugId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LugarId")
+                    b.Property<int>("PuntoId")
                         .HasColumnType("int");
 
                     b.Property<bool>("active")
                         .HasColumnType("bit");
 
                     b.HasKey("GLId");
-
-                    b.HasIndex("LugarId");
 
                     b.ToTable("geolugares");
                 });
@@ -93,11 +83,11 @@ namespace bakend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("latitud")
-                        .HasColumnType("float");
+                    b.Property<decimal>("latitud")
+                        .HasColumnType("decimal(9,6)");
 
-                    b.Property<double>("longitud")
-                        .HasColumnType("float");
+                    b.Property<decimal>("longitud")
+                        .HasColumnType("decimal(9,6)");
 
                     b.Property<string>("nombre")
                         .IsRequired()
@@ -115,15 +105,11 @@ namespace bakend.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<byte>("FFin")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("tinyint");
+                    b.Property<DateTime?>("FFin")
+                        .HasColumnType("datetime2");
 
-                    b.Property<byte>("FInicio")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("tinyint");
+                    b.Property<DateTime>("FInicio")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("RecursoId")
                         .HasColumnType("int");
@@ -136,11 +122,36 @@ namespace bakend.Migrations
 
                     b.HasKey("MovId");
 
-                    b.HasIndex("RecursoId");
-
-                    b.HasIndex("UsuarioId");
-
                     b.ToTable("Usu_Rec");
+                });
+
+            modelBuilder.Entity("modelos.posicion", b =>
+                {
+                    b.Property<int>("PosId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("FStamp")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getdate()");
+
+                    b.Property<int>("RecursoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("latitud")
+                        .HasColumnType("decimal(9,6)");
+
+                    b.Property<decimal>("longitud")
+                        .HasColumnType("decimal(9,6)");
+
+                    b.HasKey("PosId");
+
+                    b.ToTable("posiciones");
                 });
 
             modelBuilder.Entity("modelos.punto", b =>
@@ -150,21 +161,16 @@ namespace bakend.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("GLId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("active")
                         .HasColumnType("bit");
 
-                    b.Property<double>("latitud")
-                        .HasColumnType("float");
+                    b.Property<decimal>("latitud")
+                        .HasColumnType("decimal(9,6)");
 
-                    b.Property<double>("longitud")
-                        .HasColumnType("float");
+                    b.Property<decimal>("longitud")
+                        .HasColumnType("decimal(9,6)");
 
                     b.HasKey("PuntoId");
-
-                    b.HasIndex("GLId");
 
                     b.ToTable("puntos");
                 });
@@ -194,7 +200,7 @@ namespace bakend.Migrations
 
             modelBuilder.Entity("modelos.usuario", b =>
                 {
-                    b.Property<int>("Usuarioid")
+                    b.Property<int?>("Usuarioid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -204,10 +210,9 @@ namespace bakend.Migrations
 
                     b.Property<string>("correo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("nombre")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("password")
@@ -219,65 +224,10 @@ namespace bakend.Migrations
 
                     b.HasKey("Usuarioid");
 
+                    b.HasIndex("correo")
+                        .IsUnique();
+
                     b.ToTable("Usuario");
-                });
-
-            modelBuilder.Entity("modelos.ent_sal", b =>
-                {
-                    b.HasOne("modelos.geolug", "geolug")
-                        .WithMany()
-                        .HasForeignKey("GLId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("modelos.recurso", "recurso")
-                        .WithMany()
-                        .HasForeignKey("RecursoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("geolug");
-
-                    b.Navigation("recurso");
-                });
-
-            modelBuilder.Entity("modelos.geolug", b =>
-                {
-                    b.HasOne("modelos.lugar", "lugar")
-                        .WithMany()
-                        .HasForeignKey("LugarId");
-
-                    b.Navigation("lugar");
-                });
-
-            modelBuilder.Entity("modelos.movimiento", b =>
-                {
-                    b.HasOne("modelos.recurso", "recurso")
-                        .WithMany()
-                        .HasForeignKey("RecursoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("modelos.usuario", "usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("recurso");
-
-                    b.Navigation("usuario");
-                });
-
-            modelBuilder.Entity("modelos.punto", b =>
-                {
-                    b.HasOne("modelos.geolug", "geolug")
-                        .WithMany()
-                        .HasForeignKey("GLId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("geolug");
                 });
 #pragma warning restore 612, 618
         }

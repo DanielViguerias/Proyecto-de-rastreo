@@ -140,14 +140,7 @@ namespace bakend.Controllers
             
         }
 
-        [HttpGet("filtroEq/{busqueda}")]
-
-        public async Task<ActionResult<IEnumerable<movimiento>>> Get2Search(string busq)
-    {
-         var res = _context.movimientos.Where(s => s.recurso.nombre == busq).ToArray();
-           return res;
-           //ControllerContext.MyDisplayRouteInfo(id);
-    }
+      
         private bool movimientoExists(int id)
         {
             return _context.movimientos.Any(e => e.MovId == id);

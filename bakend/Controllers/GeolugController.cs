@@ -30,7 +30,7 @@ namespace bakend.Controllers
         {
             try
             {
-              return await _context.geolugares.ToListAsync();  
+              return await _context.geolugares.Where(x => x.active==true).ToListAsync();  
             }
             catch (Exception ex)
             {
@@ -47,9 +47,9 @@ namespace bakend.Controllers
             var geolug = await _context.geolugares.FindAsync(id);
             try
             {
-                if (geolug == null)
+                if (geolug == null || geolug.active==false)
             {
-                return NotFound();
+                return NotFound("No se encontro el GeoLugar");
             }
 
             return geolug;
@@ -67,9 +67,9 @@ namespace bakend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Putgeolug(int id, geolug geolug)
         {
-            if (id != geolug.GLId)
+            if ((id != geolug.GLId ) || (geolug.active = false))
             {
-                return BadRequest();
+                return BadRequest("GeoLugar no encontrado");
             }
 
             _context.Entry(geolug).State = EntityState.Modified;
@@ -82,7 +82,7 @@ namespace bakend.Controllers
             {
                 if (!geolugExists(id))
                 {
-                    return NotFound();
+                    return NotFound("No se encontro el Geolugar");
                 }
                 else
                 {
@@ -121,12 +121,12 @@ namespace bakend.Controllers
             try
             {
                 var geolug = await _context.geolugares.FindAsync(id);
-            if (geolug == null)
+            if (geolug == null || geolug.active == false)
             {
-                return NotFound();
+                return NotFound("No se encontro el Geolugar");
             }
-
-            _context.geolugares.Remove(geolug);
+             geolug.active = false;
+            _context.geolugares.Update(geolug);
             await _context.SaveChangesAsync();
 
             return Ok("Eliminado con exito");

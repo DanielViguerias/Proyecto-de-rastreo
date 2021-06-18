@@ -42,12 +42,13 @@ namespace modelos
         
         public int? Usuarioid {get; set;}
         
+        
         public string nombre {get; set;}
-        [EmailAddress,Required]
+        [EmailAddress,Required(ErrorMessage ="Se Requiere el correo.")]
         public string correo {get; set;}
-        [MinLength(8,ErrorMessage="El password requiere minimo 8 caracteres"),Required]
+        [MinLength(8,ErrorMessage="El password requiere minimo 8 caracteres"),Required (ErrorMessage ="El password es requerido")]
         public string password {get; set;}
-        public string role {get;set;}
+        public string role {get;set;} = "user";
         public bool active {get;set;} = true;
 
     }
@@ -56,9 +57,9 @@ namespace modelos
 
         [Key]
         public int RecursoId{get; set;}
-        [Required]
+        [Required(ErrorMessage = "Se requiere el nombre.")]
         public string nombre {get;set;}
-        [Required]
+        [Required(ErrorMessage = "Se requiere el tipo.")]
         public string tipo{get;set;}
         public bool active {get;set;} = true;       
 
@@ -67,14 +68,14 @@ namespace modelos
     public class lugar{
         [Key]
         public int LugarId{ get; set;}
-        [Required]
+        [Required(ErrorMessage = "Se requiere el nombre.")]
         public string nombre {get;set;}
-        [Required]
+        [Required(ErrorMessage = "Se requiere el domicilio.")]
         public string domicilio {get;set;}
-        [Required]
+        [Required (ErrorMessage = "Se requiere la latitud.")]
         [Column(TypeName = "decimal(9, 6)")]
         public decimal latitud {get;set;}
-        [Required]
+        [Required(ErrorMessage = "Se requiere La longitud.")]
         [Column(TypeName = "decimal(9, 6)")]
         public decimal longitud {get; set;}
         public bool active {get;set;} = true;       
@@ -85,16 +86,15 @@ namespace modelos
     {
         [Key]
         public int MovId{ get; set;}
+        [Required]
+         [ForeignKey("UsuarioId")]
         public int UsuarioId {get; set;}
-        [ForeignKey("UsuarioId")]
-        public usuario usuario{get;set;}
+        [Required]
+       [ForeignKey("RecursoId")]
         public int RecursoId {get; set;}
-        [ForeignKey("RecursoId")]
-        public recurso recurso{get;set;}
-        [Timestamp]
-        public byte FInicio {get; set;}
-        [Timestamp]
-        public byte FFin {get; set;}
+        [Required(ErrorMessage = "Se requiere La fecha de inicio.")]
+        public DateTime FInicio {get; set;}
+        public DateTime? FFin {get; set;}
         public bool active {get;set;} = true;    
 
     }
@@ -102,9 +102,12 @@ namespace modelos
     public class geolug{
          [Key]
         public int GLId{ get; set;}
-        public int LugId {get; set;}
+        [Required]
+        [ForeignKey("PuntoId")]
+        public int PuntoId{get;set;}
+        [Required]
         [ForeignKey("LugarId")]
-        public lugar lugar{get;set;}
+        public int LugId {get; set;}    
         public bool active {get;set;} = true;    
 
 
@@ -113,13 +116,10 @@ namespace modelos
     public class punto{
         [Key]
         public int PuntoId{get; set;}
-        public int GLId{get;set;}
-        [ForeignKey("GLId")]
-        public geolug geolug {get;set;}
-         [Required]
+         [Required(ErrorMessage = "Se requiere latitud.")]
          [Column(TypeName = "decimal(9, 6)")]
         public decimal latitud {get;set;}
-        [Required]
+        [Required(ErrorMessage = "Se requiere longitud.")]
         [Column(TypeName = "decimal(9, 6)")]
         public decimal longitud {get; set;}
         public bool active {get;set;} = true;       
@@ -130,37 +130,34 @@ namespace modelos
         
         [Key]
         public int PosId { get; set;}
-        public int RecursoId{get;set;}
         [ForeignKey("RecursoId")]
-        public recurso recurso{get;set;}
-
-        public int UsuarioId{get;set;}
+        public int RecursoId{get;set;}
         [ForeignKey("UsuarioId")]
-        public usuario usuario{get;set;}
-        [Required]
+        public int UsuarioId{get;set;}
+
+        [Required(ErrorMessage = "Se requiere latitud.")]
         [Column(TypeName = "decimal(9, 6)")]
         public decimal latitud {get;set;}
-        [Required]
+        [Required(ErrorMessage = "Se requiere longitud.")]
         [Column(TypeName = "decimal(9, 6)")]
         public decimal longitud {get; set;}
-        [DataType(DataType.Date)]
         public DateTime FStamp {get; set;}
+
     
     }
 
     public class ent_sal{
         [Key]
         public int EntSalId{get; set;}
-         public int RecursoId { get; set; }
+        [Required]
         [ForeignKey("RecursoId")]
-        public recurso recurso { get; set; }
+         public int RecursoId { get; set; }
+         [Required]
+         [ForeignKey("GLId")]
         public int GLId { get; set; }
-        [ForeignKey("GLId")]
-        public geolug geolug { get; set; }
-        [Timestamp]
-        public byte Entrada {get; set;}
-        [Timestamp]
-        public byte Salida {get; set;}
+        [Required]
+        public DateTime Entrada {get; set;}
+        public DateTime Salida {get; set;}
         public bool active {get;set;} = true;    
 
 

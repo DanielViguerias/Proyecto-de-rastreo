@@ -9,6 +9,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System;
+using Microsoft.AspNet.OData.Extensions;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace bakend
 {
@@ -27,6 +31,9 @@ namespace bakend
         {
 
             services.AddControllers();
+
+            // requires using Microsoft.AspNet.OData.Extensions;
+    
             services.AddDbContext<ApplicationDbContext>(
         options => options.UseSqlServer(Configuration.GetConnectionString("DbCon")));
         // Se agrega CORS
@@ -59,6 +66,7 @@ namespace bakend
                
             
         }
+       
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -80,6 +88,8 @@ namespace bakend
             app.UseCors(MyAllowSpecificOrigins);
             app.UseAuthentication();
             app.UseAuthorization();
+
+           
 
             app.UseEndpoints(endpoints =>
             {

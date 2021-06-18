@@ -29,7 +29,7 @@ namespace bakend.Controllers
         {
             try
             {
-                return await _context.recursos.ToListAsync();
+                return await _context.recursos.Where(x => x.active==true).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -47,9 +47,9 @@ namespace bakend.Controllers
             try
             {
                 var recurso = await _context.recursos.FindAsync(id);
-                if (recurso == null)
+                if (recurso == null || recurso.active==false)
                 {
-                    return NotFound();
+                    return NotFound("No se encontro el recurso");
                 }
 
                 return recurso;
@@ -67,9 +67,9 @@ namespace bakend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Putrecurso(int id, recurso recurso)
         {
-            if (id != recurso.RecursoId)
+            if ((id != recurso.RecursoId) || (recurso.active = false))
             {
-                return BadRequest();
+                return BadRequest("Registro no encontrado");
             }
 
             _context.Entry(recurso).State = EntityState.Modified;
@@ -78,14 +78,15 @@ namespace bakend.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
                 if (!recursoExists(id))
                 {
-                    return NotFound();
+                    return NotFound("No se encontro el recurso");
                 }
                 else
                 {
+                     ELog.Add(ex.ToString());
                     throw;
                 }
             }
@@ -120,12 +121,12 @@ namespace bakend.Controllers
             try
             {
                  var recurso = await _context.recursos.FindAsync(id);
-            if (recurso == null)
+            if (recurso == null || recurso.active == false)
             {
-                return NotFound();
+                return NotFound("No se encontro el recurso");
             }
-
-            _context.recursos.Remove(recurso);
+             recurso.active = false;
+            _context.recursos.Update(recurso);
             await _context.SaveChangesAsync();
 
             return Ok("Eliminado con exito");

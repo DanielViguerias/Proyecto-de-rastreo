@@ -30,7 +30,7 @@ namespace bakend.Controllers
         {
             try
             {
-                return await _context.EntradasSalidas.ToListAsync();
+                return await _context.EntradasSalidas.Where(x => x.active==true).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -48,9 +48,9 @@ namespace bakend.Controllers
             {
                 var ent_sal = await _context.EntradasSalidas.FindAsync(id);
 
-            if (ent_sal == null)
+            if (ent_sal == null || ent_sal.active==false)
             {
-                return NotFound();
+                return NotFound("No se encontro la Entrada/Salida");
             }
 
             return ent_sal;
@@ -68,9 +68,9 @@ namespace bakend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Putent_sal(int id, ent_sal ent_sal)
         {
-            if (id != ent_sal.EntSalId)
+            if ((id != ent_sal.EntSalId ) || (ent_sal.active = false))
             {
-                return BadRequest();
+                return BadRequest("Entrada/Salida no encontrada");
             }
 
             _context.Entry(ent_sal).State = EntityState.Modified;
@@ -83,7 +83,7 @@ namespace bakend.Controllers
             {
                 if (!ent_salExists(id))
                 {
-                    return NotFound();
+                    return NotFound("No se encontro la Entrada/Salida");
                 }
                 else
                 {
@@ -122,12 +122,12 @@ namespace bakend.Controllers
             try
             {
                  var ent_sal = await _context.EntradasSalidas.FindAsync(id);
-            if (ent_sal == null)
+            if (ent_sal == null || ent_sal.active == false)
             {
-                return NotFound();
+                return NotFound("No se encontro la entrada/salida");
             }
-
-            _context.EntradasSalidas.Remove(ent_sal);
+            ent_sal.active = false;
+            _context.EntradasSalidas.Update(ent_sal);
             await _context.SaveChangesAsync();
 
           return Ok("Eliminado con exito");

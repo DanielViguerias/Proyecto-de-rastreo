@@ -50,7 +50,7 @@ namespace bakend.Controllers
 
                 if (posicion == null)
                 {
-                    return NotFound();
+                    return NotFound("No se encontro la posicion");
                 }
 
                 return posicion;
@@ -70,7 +70,7 @@ namespace bakend.Controllers
         {
             if (id != posicion.PosId)
             {
-                return BadRequest();
+                return BadRequest("No se encontro la posicion");
             }
 
             _context.Entry(posicion).State = EntityState.Modified;
@@ -83,7 +83,7 @@ namespace bakend.Controllers
             {
                 if (!posicionExists(id))
                 {
-                    return NotFound();
+                    return NotFound("No se encontro la posicion");
                 }
                 else
                 {
