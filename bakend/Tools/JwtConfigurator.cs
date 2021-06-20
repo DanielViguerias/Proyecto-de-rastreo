@@ -33,7 +33,7 @@ namespace Tools
                 issuer: Issuer,
                 audience: Audience,
                 claims,
-                expires: DateTime.Now.AddMinutes(15),
+                expires: DateTime.Now.AddYears(1),
                 signingCredentials: credentials
             );
 

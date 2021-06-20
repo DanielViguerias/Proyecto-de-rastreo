@@ -11,13 +11,10 @@ namespace modelos
     {
             protected override void OnModelCreating(ModelBuilder modelBuilder)
         {   
-            
-            modelBuilder.Entity<posicion>()
-            .Property(b => b.FStamp)
-            .HasDefaultValueSql("getdate()");
-
             modelBuilder.Entity<usuario>(entity => {
             entity.HasIndex(e => e.correo).IsUnique();
+
+            modelBuilder.Entity<movimiento>().HasOne(p => p.Usuario).WithMany(x=> x.movimientos);
         });
     }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -38,11 +35,10 @@ namespace modelos
     [Table("Usuario")]
     public class usuario
     {
+       
         [Key]
         
         public int? Usuarioid {get; set;}
-        
-        
         public string nombre {get; set;}
         [EmailAddress,Required(ErrorMessage ="Se Requiere el correo.")]
         public string correo {get; set;}
@@ -50,18 +46,22 @@ namespace modelos
         public string password {get; set;}
         public string role {get;set;} = "user";
         public bool active {get;set;} = true;
+        
+        public List<movimiento> movimientos {get; set;}
+        
 
     }
     [Table("Recurso")]
     public class recurso{
-
+       
         [Key]
         public int RecursoId{get; set;}
         [Required(ErrorMessage = "Se requiere el nombre.")]
         public string nombre {get;set;}
         [Required(ErrorMessage = "Se requiere el tipo.")]
         public string tipo{get;set;}
-        public bool active {get;set;} = true;       
+        public bool active {get;set;} = true;  
+        public List<movimiento> movimientos {get; set;}
 
     }
     [Table("Lugar")]
@@ -72,11 +72,13 @@ namespace modelos
         public string nombre {get;set;}
         [Required(ErrorMessage = "Se requiere el domicilio.")]
         public string domicilio {get;set;}
+        
+        [Column(TypeName = "decimal(9, 6)")]
         [Required (ErrorMessage = "Se requiere la latitud.")]
-        [Column(TypeName = "decimal(9, 6)")]
         public decimal latitud {get;set;}
-        [Required(ErrorMessage = "Se requiere La longitud.")]
+        
         [Column(TypeName = "decimal(9, 6)")]
+        [Required(ErrorMessage = "Se requiere la longitud.")]
         public decimal longitud {get; set;}
         public bool active {get;set;} = true;       
 
@@ -86,25 +88,27 @@ namespace modelos
     {
         [Key]
         public int MovId{ get; set;}
-        [Required]
-         [ForeignKey("UsuarioId")]
+        
         public int UsuarioId {get; set;}
-        [Required]
-       [ForeignKey("RecursoId")]
+        [ForeignKey("UsuarioId")]
+        public usuario Usuario {get; set;}
+       
         public int RecursoId {get; set;}
+        [ForeignKey("RecursoId")]
+        public recurso Recurso{get;set;}
         [Required(ErrorMessage = "Se requiere La fecha de inicio.")]
-        public DateTime FInicio {get; set;}
+        public DateTime FInicio {get; set;} = DateTime.Now;
         public DateTime? FFin {get; set;}
-        public bool active {get;set;} = true;    
+        public bool active {get;set;} = true;   
+
+         
 
     }
 
     public class geolug{
          [Key]
         public int GLId{ get; set;}
-        [Required]
-        [ForeignKey("PuntoId")]
-        public int PuntoId{get;set;}
+       
         [Required]
         [ForeignKey("LugarId")]
         public int LugId {get; set;}    
@@ -113,9 +117,12 @@ namespace modelos
 
     }
 
+    [Index(nameof(GLId))]
     public class punto{
         [Key]
         public int PuntoId{get; set;}
+        [ForeignKey("GLId")]
+        public int GLId {get; set;}
          [Required(ErrorMessage = "Se requiere latitud.")]
          [Column(TypeName = "decimal(9, 6)")]
         public decimal latitud {get;set;}
@@ -132,8 +139,6 @@ namespace modelos
         public int PosId { get; set;}
         [ForeignKey("RecursoId")]
         public int RecursoId{get;set;}
-        [ForeignKey("UsuarioId")]
-        public int UsuarioId{get;set;}
 
         [Required(ErrorMessage = "Se requiere latitud.")]
         [Column(TypeName = "decimal(9, 6)")]
@@ -141,7 +146,7 @@ namespace modelos
         [Required(ErrorMessage = "Se requiere longitud.")]
         [Column(TypeName = "decimal(9, 6)")]
         public decimal longitud {get; set;}
-        public DateTime FStamp {get; set;}
+        public DateTime FStamp {get; set;} = DateTime.Now;
 
     
     }

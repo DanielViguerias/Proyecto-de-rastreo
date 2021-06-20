@@ -35,7 +35,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al obtener los lugares.");
             }
             
         }
@@ -57,7 +57,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al obtener el lugar.");
             }
             
         }
@@ -79,7 +79,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al actualizar el lugar.");
             }
            
 
@@ -96,7 +96,7 @@ namespace bakend.Controllers
                 else
                 {
                     ELog.Add(ex.ToString());
-                    throw;
+                    return NotFound("Ocurrio un error al actualizar  el lugar en la base de datos.");
                 }
             }
 
@@ -119,7 +119,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al registrar el lugar.");;
             }
             
         }
@@ -144,7 +144,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al borrar el lugar.");
             }
             
         }

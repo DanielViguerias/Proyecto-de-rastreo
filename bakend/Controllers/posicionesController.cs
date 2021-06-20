@@ -35,7 +35,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al obtener las posiciones.");;
             }
 
         }
@@ -58,7 +58,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al obtener la posicion.");
             }
 
         }
@@ -88,7 +88,7 @@ namespace bakend.Controllers
                 else
                 {
                     ELog.Add(ex.ToString());
-                    throw;
+                    return NotFound("Ocurrio un error al actualizar la posicion.");;
                 }
             }
 
@@ -110,7 +110,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al actualizar la posicion.");;
             }
 
         }
@@ -135,7 +135,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al borrar la posicion.");;
             }
 
         }

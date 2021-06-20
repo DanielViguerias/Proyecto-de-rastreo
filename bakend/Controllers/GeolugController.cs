@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using bakend.Tools;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using modelos;
@@ -35,7 +34,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al obtener los Geolugares.");
             }
             
         }
@@ -57,7 +56,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al obtener el Geolugar.");
             }
             
         }
@@ -87,7 +86,7 @@ namespace bakend.Controllers
                 else
                 {
                     ELog.Add(ex.ToString());
-                    throw;
+                    return NotFound("Ocurrio un error al actualizar el Geolugar.");;
                 }
             }
 
@@ -109,7 +108,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al registrar el Geolugar.");;
             }
             
         }
@@ -134,7 +133,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al eliminar el Geolugar.");;
             }
             
         }

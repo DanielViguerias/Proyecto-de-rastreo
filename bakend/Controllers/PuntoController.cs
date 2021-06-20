@@ -34,7 +34,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al obtener los puntos.");
             }
 
         }
@@ -57,7 +57,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al obtener el punto.");
             }
 
         }
@@ -88,7 +88,7 @@ namespace bakend.Controllers
                 else
                 {
                      ELog.Add(ex.ToString());
-                    throw;
+                    return NotFound("Ocurrio un error al actualizar el punto.");;
                 }
             }
 
@@ -110,7 +110,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al registrar el punto.");;
             }
 
         }
@@ -135,7 +135,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al borrar el punto.");;
             }
 
         }

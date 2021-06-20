@@ -34,7 +34,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al obtener la lista de recursos.");;
             }
 
         }
@@ -57,7 +57,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                  return NotFound("Ocurrio un error al obtener el recurso.");
             }
 
         }
@@ -87,7 +87,7 @@ namespace bakend.Controllers
                 else
                 {
                      ELog.Add(ex.ToString());
-                    throw;
+                    return NotFound("Ocurrio un error al actualizar el recurso.");
                 }
             }
 
@@ -109,7 +109,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al registrar el recurso.");;
             }
            
         }
@@ -134,7 +134,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al borrar el recurso.");;
             }
            
         }

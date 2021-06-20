@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using bakend.Tools;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using modelos;
@@ -35,7 +34,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al obtener las Entradas/Salidas.");
             }
             
         }
@@ -58,7 +57,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al obtener la Entrada/Salida.");
             }
             
         }
@@ -88,7 +87,7 @@ namespace bakend.Controllers
                 else
                 {
                     ELog.Add(ex.ToString());
-                    throw;
+                    return NotFound("Ocurrio un error al actualizar la Entrada/Salida.");
                 }
             }
 
@@ -110,7 +109,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al registrar la Entrada/Salida.");
             }
             
         }
@@ -135,7 +134,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al borrar la Entrada/Salida.");;
             }
            
         }

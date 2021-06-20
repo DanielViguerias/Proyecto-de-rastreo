@@ -56,9 +56,6 @@ namespace bakend.Migrations
                     b.Property<int>("LugId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PuntoId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("active")
                         .HasColumnType("bit");
 
@@ -120,6 +117,10 @@ namespace bakend.Migrations
 
                     b.HasKey("MovId");
 
+                    b.HasIndex("RecursoId");
+
+                    b.HasIndex("UsuarioId");
+
                     b.ToTable("Usu_Rec");
                 });
 
@@ -131,14 +132,9 @@ namespace bakend.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("FStamp")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("RecursoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UsuarioId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("latitud")
@@ -159,6 +155,9 @@ namespace bakend.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("GLId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("active")
                         .HasColumnType("bit");
 
@@ -169,6 +168,8 @@ namespace bakend.Migrations
                         .HasColumnType("decimal(9,6)");
 
                     b.HasKey("PuntoId");
+
+                    b.HasIndex("GLId");
 
                     b.ToTable("puntos");
                 });
@@ -226,6 +227,35 @@ namespace bakend.Migrations
                         .IsUnique();
 
                     b.ToTable("Usuario");
+                });
+
+            modelBuilder.Entity("modelos.movimiento", b =>
+                {
+                    b.HasOne("modelos.recurso", "Recurso")
+                        .WithMany("movimientos")
+                        .HasForeignKey("RecursoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("modelos.usuario", "Usuario")
+                        .WithMany("movimientos")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Recurso");
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("modelos.recurso", b =>
+                {
+                    b.Navigation("movimientos");
+                });
+
+            modelBuilder.Entity("modelos.usuario", b =>
+                {
+                    b.Navigation("movimientos");
                 });
 #pragma warning restore 612, 618
         }

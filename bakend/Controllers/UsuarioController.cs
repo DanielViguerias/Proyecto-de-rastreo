@@ -50,7 +50,7 @@ namespace bakend.Controllers
             {
                 
                 ELog.Add(ex.ToString());
-                throw;
+                return NotFound("Ocurrio un error al obtener la lista de usuarios.");
             }
 
         }
@@ -73,7 +73,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                  return NotFound("Ocurrio un error al obtener al usuario.");;
             }
 
         }
@@ -106,7 +106,7 @@ namespace bakend.Controllers
                 else
                 {
                      ELog.Add(ex.ToString());
-                    throw;
+                      return NotFound("Ocurrio un error al actualizar al usuario.");;
                 }
             }
 
@@ -145,7 +145,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                return BadRequest(ex.Message);
+                return NotFound("Ocurrio un error al cambiar el password");
             }
         }
         // POST: api/Usuario
@@ -172,7 +172,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                  return NotFound("Ocurrio un error al actualizar el usuario.");;
             }
 
         }
@@ -199,7 +199,7 @@ namespace bakend.Controllers
             catch (Exception ex)
             {
                 ELog.Add(ex.ToString());
-                throw;
+                  return NotFound("Ocurrio un error al borrar un usuario.");
             }
             
         }

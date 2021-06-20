@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace bakend.Migrations
 {
-    public partial class junio18 : Migration
+    public partial class _19junio : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,7 +30,6 @@ namespace bakend.Migrations
                 {
                     GLId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PuntoId = table.Column<int>(type: "int", nullable: false),
                     LugId = table.Column<int>(type: "int", nullable: false),
                     active = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -63,10 +62,9 @@ namespace bakend.Migrations
                     PosId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RecursoId = table.Column<int>(type: "int", nullable: false),
-                    UsuarioId = table.Column<int>(type: "int", nullable: false),
                     latitud = table.Column<decimal>(type: "decimal(9,6)", nullable: false),
                     longitud = table.Column<decimal>(type: "decimal(9,6)", nullable: false),
-                    FStamp = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getdate()")
+                    FStamp = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -79,6 +77,7 @@ namespace bakend.Migrations
                 {
                     PuntoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    GLId = table.Column<int>(type: "int", nullable: false),
                     latitud = table.Column<decimal>(type: "decimal(9,6)", nullable: false),
                     longitud = table.Column<decimal>(type: "decimal(9,6)", nullable: false),
                     active = table.Column<bool>(type: "bit", nullable: false)
@@ -104,23 +103,6 @@ namespace bakend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Usu_Rec",
-                columns: table => new
-                {
-                    MovId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UsuarioId = table.Column<int>(type: "int", nullable: false),
-                    RecursoId = table.Column<int>(type: "int", nullable: false),
-                    FInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FFin = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    active = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Usu_Rec", x => x.MovId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Usuario",
                 columns: table => new
                 {
@@ -136,6 +118,50 @@ namespace bakend.Migrations
                 {
                     table.PrimaryKey("PK_Usuario", x => x.Usuarioid);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Usu_Rec",
+                columns: table => new
+                {
+                    MovId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UsuarioId = table.Column<int>(type: "int", nullable: false),
+                    RecursoId = table.Column<int>(type: "int", nullable: false),
+                    FInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FFin = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    active = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usu_Rec", x => x.MovId);
+                    table.ForeignKey(
+                        name: "FK_Usu_Rec_Recurso_RecursoId",
+                        column: x => x.RecursoId,
+                        principalTable: "Recurso",
+                        principalColumn: "RecursoId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Usu_Rec_Usuario_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuario",
+                        principalColumn: "Usuarioid",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_puntos_GLId",
+                table: "puntos",
+                column: "GLId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Usu_Rec_RecursoId",
+                table: "Usu_Rec",
+                column: "RecursoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Usu_Rec_UsuarioId",
+                table: "Usu_Rec",
+                column: "UsuarioId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Usuario_correo",
@@ -162,10 +188,10 @@ namespace bakend.Migrations
                 name: "puntos");
 
             migrationBuilder.DropTable(
-                name: "Recurso");
+                name: "Usu_Rec");
 
             migrationBuilder.DropTable(
-                name: "Usu_Rec");
+                name: "Recurso");
 
             migrationBuilder.DropTable(
                 name: "Usuario");
