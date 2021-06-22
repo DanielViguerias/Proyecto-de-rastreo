@@ -32,6 +32,9 @@ ngOnInit():void{
         localStorage.setItem("auth_token",resp.token)
        this.cookies.set('auth_token',resp.token)
        this.cookies.get('auth_token')
+    },err=>{
+      this.toastr.error("Usuario o contraseña invalido")
+      console.log(err);
     }
 );
      
@@ -40,10 +43,8 @@ ngOnInit():void{
 
 logout(){
   localStorage.removeItem("auth_token")
-  this.cookies.delete("auth_token")
+  this.cookies.deleteAll("auth_token")
 }
 
-get_recursos(): Observable<RecursosI[]> {
- return this.http.get<RecursosI[]>(this.urlApi + "Recurso");
-}
+
 }

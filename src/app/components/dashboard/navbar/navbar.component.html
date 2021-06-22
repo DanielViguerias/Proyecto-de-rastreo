@@ -53,6 +53,7 @@
   <mat-sidenav-container>
   
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <mat-divider></mat-divider>
     <button [routerLink]="['home']" mat-button class="menu-button">
       <mat-icon>home</mat-icon>
       <span>Inicio</span>
@@ -73,6 +74,7 @@
      <mat-icon>phone</mat-icon>
      <span>Recursos</span>
    </button>
+   <mat-divider></mat-divider>
    <button [routerLink]="['inicio']" mat-button class="menu-button" (click)="authservice.logout()">
      <mat-icon>logout</mat-icon>
      <span>Cerrar sesión</span>

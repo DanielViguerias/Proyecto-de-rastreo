@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/data.service';
+;
 
 @Component({
   selector: 'app-recursos',
@@ -8,10 +8,10 @@ import { AuthService } from 'src/app/services/data.service';
 })
 export class RecursosComponent implements OnInit {
 
-  constructor(public authservice:AuthService) { }
+  constructor() { }
 
   ngOnInit(): void {
-  this.authservice.get_recursos().subscribe(data => console.log(data));
+  
   }
 
 }

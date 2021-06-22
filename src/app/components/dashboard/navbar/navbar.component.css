@@ -1,5 +1,5 @@
 mat-toolbar {
-    background: #6a98ce;
+    background: darkblue;
     color: white;
   }
   
@@ -7,7 +7,7 @@ mat-toolbar {
     margin: 16px;
     width: 200px;
     border-right: none;
-    background: #6a98ce;
+    background: darkblue;
     color: white;
     border-radius: 10px;
     padding: 16px;
