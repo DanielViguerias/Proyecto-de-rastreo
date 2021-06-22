@@ -35,8 +35,9 @@ import { ReportesComponent } from './components/dashboard/reportes/reportes.comp
 import { RecursosComponent } from './components/dashboard/recursos/recursos.component';
 import { CrearusuarioComponent } from './components/dashboard/crearusuario/crearusuario.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtModule } from "@auth0/angular-jwt";
-import { AuthService } from './services/login.service';
+import { JwtInterceptor, JwtModule } from "@auth0/angular-jwt";
+import { AuthService } from './services/data.service';
+import { PeticionesInterceptor } from './interceptores/peticiones.interceptor';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -86,7 +87,14 @@ export function tokenGetter() {
   })
    
   ],
-  providers: [CookieService,AuthService],
+  providers: [
+    CookieService,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:PeticionesInterceptor,
+      multi:true
+    },
+    AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

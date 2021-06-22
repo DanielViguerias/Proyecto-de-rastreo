@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../services/login.service';
+import { AuthService } from '../../../services/data.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -45,7 +45,7 @@ log() {
   
   }
   this.loading = false;
-},3000);
+},2000);
  
 
   

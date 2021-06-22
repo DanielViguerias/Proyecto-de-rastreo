@@ -11,6 +11,7 @@ import { UsuariosComponent } from './components/dashboard/usuarios/usuarios.comp
 import { BienvenidaComponent } from './components/inicio/bienvenida/bienvenida.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { LoginComponent } from './components/inicio/login/login.component';
+import { AccessguardGuard } from './guards/accessguard.guard';
 
 const routes: Routes = [
   {path:"", redirectTo:'/inicio', pathMatch:'full'},
@@ -18,7 +19,7 @@ const routes: Routes = [
     {path:'', component: BienvenidaComponent},
     {path: 'login', component: LoginComponent}
   ]},
-  {path: 'dashboard', component: DashboardComponent, children:[
+  {path: 'dashboard', canActivate:[AccessguardGuard],component: DashboardComponent, children:[
     {path:'home', component:MapaComponent},
     {path:'usuario', component:UsuariosComponent,children:[
       {path:'crearusuario',component:CrearusuarioComponent}

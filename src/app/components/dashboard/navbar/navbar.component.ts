@@ -1,7 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { AuthService } from 'src/app/services/login.service';
+import { AuthService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-navbar',
