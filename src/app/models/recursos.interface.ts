@@ -1,5 +1,5 @@
 export interface RecursosI{
-    id: string;
+    recursoId: string;
     nombre:string;
     tipo:string;
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1>Recursos</h1>
 
   
@@ -38,11 +39,31 @@
       <button type="button" class="btn btn-outline-info">Editar</button>
 
       <button type="button" class="btn btn-outline-danger">Borrar</button>
+=======
+<body>
+  <div class="container">
+>>>>>>> c8d58119f17104d5927329aa39a9e39c4b69e3d1
       
-
-    </td>
-
-  </tr>
-
-</table>
-<a href="#" routerLink="/post/create/" class="btn btn-success">Asignar recurso</a>
+      <h1>Recursos</h1>
+  
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Tipo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let recurso of recursos">
+            <th scope="row">{{ recurso.recursoId }}</th>
+            <td>{{ recurso.nombre }}</td>
+            <td>{{ recurso.tipo }}</td>
+  
+          </tr>
+        </tbody>
+      </table>
+      <button routerLink="crearusuario" type="button" class="btn btn-success">Success</button>
+     
+   </div>
+  </body>

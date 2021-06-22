@@ -1,5 +1,5 @@
 import { CookieService } from 'ngx-cookie-service';
-import { RecursosI } from '../models/recursos';
+import { ListaUsuariosI} from '../models/usuarios.interface';
 import { usuario } from '../models/usuario';
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -36,15 +36,16 @@ ngOnInit():void{
       this.toastr.error("Usuario o contraseña invalido")
       console.log(err);
     }
-);
-     
-      
+);         
 }
 
 logout(){
   localStorage.removeItem("auth_token")
   this.cookies.deleteAll("auth_token")
 }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> c8d58119f17104d5927329aa39a9e39c4b69e3d1
 }
