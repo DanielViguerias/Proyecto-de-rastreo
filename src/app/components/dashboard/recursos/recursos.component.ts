@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/data.service';
+import { RecursoService } from 'src/app/services/recursos.service';
+import {Router} from '@angular/router';
+import {RecursosI} from '../../../models/recursos.interface';
 
 @Component({
   selector: 'app-recursos',
@@ -7,11 +9,16 @@ import { AuthService } from 'src/app/services/data.service';
   styleUrls: ['./recursos.component.css']
 })
 export class RecursosComponent implements OnInit {
+  recursos:Array<RecursosI>
 
-  constructor(public authservice:AuthService) { }
-
-  ngOnInit(): void {
-  this.authservice.get_recursos().subscribe(data => console.log(data));
+  constructor(public recursoservice:RecursoService, private router:Router) { 
+    this.recursos = [];
   }
 
+  ngOnInit(): void {
+    this.recursoservice.get_recursos().subscribe(data => {
+    this.recursos = data;
+    console.log(data);
+  })
+  }
 }

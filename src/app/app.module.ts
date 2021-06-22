@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {FormsModule} from '@angular/forms';
 
 import {MatGridListModule} from '@angular/material/grid-list';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -62,6 +63,7 @@ export function tokenGetter() {
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module

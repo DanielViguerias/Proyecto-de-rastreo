@@ -1,48 +1,31 @@
-<h1>Lugares</h1>
-
-  
-
-   
-<br><br>
-
-
-<table class="table table-bordered">
-
-  <tr>
-
-    <th>ID</th>
-        
-    <th>Nombre del lugar</th>
-
-    <th>Domicílio</th>
-
-    
-
-    <th width="305px">Acciones</th>
-
-  </tr>
-
-  <tr>
-
-    <td>1</td>
-
-    <td>Las planchitas</td>
-
-    <td>Av.las americas#322 col.centro</td>
-
-   
-    <td>
-
-      <button type="button" class="btn btn-outline-info">Ver</button>
-      <button type="button" class="btn btn-outline-info">Editar</button>
-
-      <button type="button" class="btn btn-outline-danger">Borrar</button>
+<body>
+  <div class="container">
       
-
-    </td>
-
-  </tr>
-
-</table>
-<a href="#" routerLink="/post/create/" class="btn btn-success">Registrar lugar</a>
+      <h1>Lugares</h1>
+  
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Domicilio</th>
+            <th scope="col">Latitud</th>
+            <th scope="col">Longitud</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let lugar of lugares">
+            <th scope="row">{{ lugar.lugarId }}</th>
+            <td>{{ lugar.nombre }}</td>
+            <td>{{ lugar.domicilio }}</td>
+            <td>{{ lugar.latitud }}</td>
+            <td>{{ lugar.longitud }}</td>
+  
+          </tr>
+        </tbody>
+      </table>
+      <button routerLink="crearusuario" type="button" class="btn btn-success">Success</button>
+     
+   </div>
+  </body>
 

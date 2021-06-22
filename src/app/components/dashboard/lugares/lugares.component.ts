@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LugaresService } from 'src/app/services/lugares.service';
+import {Router} from '@angular/router';
+import {LugarI} from '../../../models/lugares.interface';
 
 @Component({
   selector: 'app-lugares',
@@ -6,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lugares.component.css']
 })
 export class LugaresComponent implements OnInit {
+  lugares:Array<LugarI>
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(public lugaresservice:LugaresService, private router:Router) { 
+    this.lugares = [];
   }
 
+  ngOnInit(): void {
+    this.lugaresservice.get_lugares().subscribe(data => {
+    this.lugares = data;
+    console.log(data);
+  })
+  }
 }

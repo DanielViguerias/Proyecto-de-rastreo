@@ -1,6 +1,5 @@
 import { CookieService } from 'ngx-cookie-service';
 import { ListaUsuariosI} from '../models/usuarios.interface';
-import { usuario } from '../models/usuario';
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -10,7 +9,7 @@ import { PeticionesInterceptor } from '../interceptores/peticiones.interceptor';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService implements OnInit{
+export class UsuarioService implements OnInit{
  private urlApi  = "https://localhost:5001/api/";
  
   
@@ -23,21 +22,8 @@ export class AuthService implements OnInit{
 ngOnInit():void{
   
 }
-//Para el login hace la conexion
- login(correo:string, password:string ) {
-  return this.http.post<usuario>(this.urlApi + "Login",{correo,password}).subscribe(
-    (resp:any) => {
-      this.toastr.success("Inicio de sesión aprobado!!")
-        this.router.navigateByUrl('/dashboard');
-        localStorage.setItem("auth_token",resp.token)
-       this.cookies.set('auth_token',resp.token)
-       this.cookies.get('auth_token')
-    }
-);         
-}
 
-logout(){
-  localStorage.removeItem("auth_token")
-  this.cookies.delete("auth_token")
-}
+get_usuarios(): Observable<ListaUsuariosI[]> {
+  return this.http.get<ListaUsuariosI[]>(this.urlApi + "Usuario");
+ }
 }

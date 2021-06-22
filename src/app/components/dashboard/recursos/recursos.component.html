@@ -1,48 +1,26 @@
-<h1>Recursos</h1>
-
-  
-
-   
-<br><br>
-
-
-<table class="table table-bordered">
-
-  <tr>
-
-    <th>ID</th>
-        
-    <th>Nombre recurso</th>
-
-    <th>Tipo de recurso</th>
-
-    <th>Usuario</th>
-
-    <th width="305px">Acciones</th>
-
-  </tr>
-
-  <tr>
-
-    <td>1</td>
-
-    <td>Automóvil Chevy 2020</td>
-
-    <td>Automóvil</td>
-
-    <td>Alejandro Ruiz</td>
-   
-    <td>
-
-      <button type="button" class="btn btn-outline-info" (click)="authservice.get_recursos()">Ver</button>
-      <button type="button" class="btn btn-outline-info">Editar</button>
-
-      <button type="button" class="btn btn-outline-danger">Borrar</button>
+<body>
+  <div class="container">
       
-
-    </td>
-
-  </tr>
-
-</table>
-<a href="#" routerLink="/post/create/" class="btn btn-success">Asignar recurso</a>
+      <h1>Recursos</h1>
+  
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Tipo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let recurso of recursos">
+            <th scope="row">{{ recurso.recursoId }}</th>
+            <td>{{ recurso.nombre }}</td>
+            <td>{{ recurso.tipo }}</td>
+  
+          </tr>
+        </tbody>
+      </table>
+      <button routerLink="crearusuario" type="button" class="btn btn-success">Success</button>
+     
+   </div>
+  </body>
