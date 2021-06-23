@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "CpGwXekYq0kL1ZXDiwAW0PKIgdmg3w8z6yIrzVh7bib8SS/d/vIfMKauGSWhq1Bpdp48ANkLvgv2IoqN7agjdg==",
+  "dgSpecHash": "O5cJopEkZnBCWFLUL7+0M4ayuw0RkT7gGFbkLAIyY9KEI0Qgl62xslV0ExT+HIdB32hPRF/32TOUYnJTlu61OQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\xtr\\Desktop\\Proyecto\\Proyecto-de-rastreo\\bakend\\bakend.csproj",
   "expectedPackageFiles": [
@@ -144,7 +144,8 @@
     "C:\\Users\\xtr\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\xtr\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\xtr\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\xtr\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\xtr\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\xtr\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.5\\microsoft.netcore.app.host.win-x64.5.0.5.nupkg.sha512"
   ],
   "logs": [
     {

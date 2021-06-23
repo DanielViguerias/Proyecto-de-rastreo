@@ -1,35 +1,28 @@
-
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
-using bakend.Tools;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using modelos;
 
 namespace bakend.Controllers
 {
-    public class FiltroEqMovController: ControllerBase{
+    public class FiltroNomMovController: ControllerBase{
            private readonly ApplicationDbContext _context;
 
-        public FiltroEqMovController(ApplicationDbContext context)
+        public FiltroNomMovController(ApplicationDbContext context)
         {
             _context = context;
             
         } 
         
-        [HttpPost("/api/feq")]
+        [HttpPost("/api/fnom")]
         public Task<List<movimiento>> GetResult([FromQuery]string busqueda){
 
-            return _context.movimientos.Where(x => x.Recurso.nombre == busqueda).ToListAsync();
+            return _context.movimientos.Where(x => x.Usuario.nombre == busqueda).ToListAsync();
               
         }
-           
+          
     }
 }
      

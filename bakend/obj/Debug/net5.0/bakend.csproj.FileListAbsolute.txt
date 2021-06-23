@@ -677,7 +677,6 @@ C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\obj\Debug\net5.0\bakend
 C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\obj\Debug\net5.0\bakend.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\obj\Debug\net5.0\bakend.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\obj\Debug\net5.0\staticwebassets\bakend.StaticWebAssets.Manifest.cache
-C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\obj\Debug\net5.0\staticwebassets\bakend.StaticWebAssets.xml
 C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\obj\Debug\net5.0\scopedcss\bundle\bakend.styles.css
 C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\obj\Debug\net5.0\bakend.RazorTargetAssemblyInfo.cache
 C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\obj\Debug\net5.0\bakend.csproj.CopyComplete

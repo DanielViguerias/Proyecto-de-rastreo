@@ -67,9 +67,9 @@ namespace bakend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Putmovimiento(int id, movimiento movimiento)
         {
-            if (id != movimiento.MovId)
+            if ((id != movimiento.MovId) || (movimiento.active = false))
             {
-                return BadRequest();
+                return BadRequest("No existe el movimiento");
             }
 
             _context.Entry(movimiento).State = EntityState.Modified;
@@ -82,7 +82,7 @@ namespace bakend.Controllers
             {
                 if (!movimientoExists(id))
                 {
-                    return NotFound();
+                    return NotFound("No se encontro en la base de datos");
                 }
                 else
                 {

@@ -60,7 +60,7 @@ namespace modelos
         public string nombre {get;set;}
         [Required(ErrorMessage = "Se requiere el tipo.")]
         public string tipo{get;set;}
-        public bool active {get;set;} = true;  
+        public bool active{get;set;} = true;  
         public List<movimiento> movimientos {get; set;}
 
     }
@@ -98,7 +98,7 @@ namespace modelos
         public recurso Recurso{get;set;}
         [Required(ErrorMessage = "Se requiere La fecha de inicio.")]
         public DateTime FInicio {get; set;} = DateTime.Now;
-        public DateTime? FFin {get; set;}
+        public DateTime FFin {get; set;}
         public bool active {get;set;} = true;   
 
          
