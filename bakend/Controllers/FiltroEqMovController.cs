@@ -14,6 +14,9 @@ using modelos;
 
 namespace bakend.Controllers
 {
+    [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [ApiController]
     public class FiltroEqMovController: ControllerBase{
            private readonly ApplicationDbContext _context;
 
@@ -23,10 +26,20 @@ namespace bakend.Controllers
             
         } 
         
-        [HttpPost("/api/feq")]
-        public Task<List<movimiento>> GetResult([FromQuery]string busqueda){
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable <movimiento>>> GetResult([FromQuery] string busqueda){
 
-            return _context.movimientos.Where(x => x.Recurso.nombre == busqueda).ToListAsync();
+            try
+            {
+                return await _context.movimientos.Where(x => x.Recurso.nombre == busqueda).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                return NotFound("No se encontro");
+    
+            }
+            
               
         }
            

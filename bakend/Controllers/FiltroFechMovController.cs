@@ -1,19 +1,20 @@
 
-
-
-
-
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using bakend.Tools;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using modelos;
 
 namespace bakend.Controllers
 {
+
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [ApiController]
     public class FiltroFechMovController : ControllerBase{
         private readonly ApplicationDbContext _context;
 
@@ -21,21 +22,42 @@ namespace bakend.Controllers
             _context = context;
         }
 
-        [HttpPost("/api/ffechIni")]
-        public Task<List<movimiento>> GetInicio([FromQuery]string busqueda){
-
+        [HttpGet("/api/ffechIni")]
+        public async Task<ActionResult<IEnumerable <movimiento>>> GetResultIni([FromQuery] string busqueda){
             var fecha = DateTime.Parse(busqueda);
-            return _context.movimientos.Where(x => x.FInicio.Year == fecha.Year
+          try
+          {
+              return await _context.movimientos.Where(x => x.FInicio.Year == fecha.Year
             && x.FInicio.Month == fecha.Month
             && x.FInicio.Day == fecha.Day).ToListAsync();
+          }
+          catch (Exception ex)
+          {
+               ELog.Add(ex.ToString());
+                return NotFound("No se encontro");
+          }
+            
         }
-        [HttpPost("/api/ffechFin")]
-        public Task<List<movimiento>> GetFin([FromQuery]string busqueda){
+        [HttpGet("/api/ffechFin")]
 
+        public async Task<ActionResult<IEnumerable <movimiento>>> GetResultFin([FromQuery] string busqueda){
             var fecha = DateTime.Parse(busqueda);
-            return _context.movimientos.Where(x => x.FFin.Year == fecha.Year
+            
+            try
+            {
+                 return await _context.movimientos.Where(x => x.FFin.Year == fecha.Year
             && x.FFin.Month == fecha.Month
             && x.FFin.Day == fecha.Day).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                
+                ELog.Add(ex.ToString());
+                return NotFound("No se encontro");
+            }
+
+            
+           
         }
 
     }

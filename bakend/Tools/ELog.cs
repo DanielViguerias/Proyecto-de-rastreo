@@ -1,15 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
 using System.IO;
-using System.Diagnostics;
 //using System.Web.HttpContext.Current;
 namespace bakend.Tools
 {
-    
-public class ELog
+
+    public class ELog
    {
        
        

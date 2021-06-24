@@ -98,7 +98,7 @@ namespace modelos
         public recurso Recurso{get;set;}
         [Required(ErrorMessage = "Se requiere La fecha de inicio.")]
         public DateTime FInicio {get; set;} = DateTime.Now;
-        public DateTime FFin {get; set;}
+        public DateTime FFin {get; set;} = DateTime.Now.AddMonths(1);
         public bool active {get;set;} = true;   
 
          

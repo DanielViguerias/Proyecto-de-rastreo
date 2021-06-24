@@ -9,10 +9,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System;
-using Microsoft.AspNet.OData.Extensions;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using Newtonsoft.Json;
 
 namespace bakend
 {
