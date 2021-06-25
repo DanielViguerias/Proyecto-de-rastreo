@@ -1,5 +1,5 @@
-export interface ListaUsuariosI{
-    usuarioid?:number;
+export interface putusuarioI{
+    usuarioid:number;
     nombre: string;
     correo: string;
     password: string;

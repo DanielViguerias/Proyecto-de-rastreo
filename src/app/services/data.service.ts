@@ -43,9 +43,6 @@ logout(){
   localStorage.removeItem("auth_token")
   this.cookies.deleteAll("auth_token")
 }
-<<<<<<< HEAD
 
 
-=======
->>>>>>> c8d58119f17104d5927329aa39a9e39c4b69e3d1
 }

@@ -30,16 +30,18 @@ import { NavbarComponent } from './components/dashboard/navbar/navbar.component'
 import { MapaComponent } from './components/dashboard/mapa/mapa.component';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { AgmCoreModule } from '@agm/core';
-import { UsuariosComponent } from './components/dashboard/usuarios/usuarios.component';
+import { UsuariosComponent} from '../app/components/dashboard/usuario/usuarios.component';
 import { LugaresComponent } from './components/dashboard/lugares/lugares.component';
 import { ReportesComponent } from './components/dashboard/reportes/reportes.component';
 import { RecursosComponent } from './components/dashboard/recursos/recursos.component';
-import { CrearusuarioComponent } from './components/dashboard/crearusuario/crearusuario.component';
+import { CrearusuarioComponent } from './components/dashboard/usuario/crearusuario/crearusuario.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor, JwtModule } from "@auth0/angular-jwt";
 import { AuthService } from './services/data.service';
 import { PeticionesInterceptor } from './interceptores/peticiones.interceptor';
-
+import {  MatOptionModule } from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
+import { EditarusuarioComponent } from './components/dashboard/usuario/editarusuario/editarusuario.component';
 export function tokenGetter() {
   return localStorage.getItem("jwt");
 }
@@ -58,7 +60,8 @@ export function tokenGetter() {
         LugaresComponent,
         ReportesComponent,
         RecursosComponent,
-        CrearusuarioComponent
+        CrearusuarioComponent,
+        EditarusuarioComponent
    
   ],
   imports: [
@@ -76,6 +79,8 @@ export function tokenGetter() {
     MatListModule,
     MatFormFieldModule,
     MatGridListModule,
+    MatOptionModule,
+    MatSelectModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCIl1tt4ATvtVLkyvPLC96PwQZCsKf6tWo'    
    }),
@@ -90,7 +95,7 @@ export function tokenGetter() {
    
   ],
   providers: [
-    CookieService,
+    CookieService,CrearusuarioComponent,
     {
       provide:HTTP_INTERCEPTORS,
       useClass:PeticionesInterceptor,
