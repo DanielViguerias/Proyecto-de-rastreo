@@ -1,34 +1,35 @@
 <div class="container">
 
-    <form [formGroup]="editarform" (ngSubmit)="postform(editarform.value)">
+    <form [formGroup]="borrarform" (ngSubmit)="delete(borrarform.value)">
         <div class="form-group">
             <label for="exampleFormControlInput1"></label>
-            <input type="text" class="form-control"  placeholder=" Actualizar nombre" formControlName="usuarioid" readonly>
+            <input type="text" class="form-control"   formControlName="usuarioid" readonly>
     </div>
             <div class="form-group">
                     <label for="exampleFormControlInput1"></label>
-                    <input type="text" class="form-control"  placeholder=" Actualizar nombre" formControlName="nombre">
+                    <input type="text" class="form-control"   formControlName="nombre" readonly>
             </div>
             <div class="form-group">
                     <label for="exampleFormControlInput1"></label>
-                    <input type="text" class="form-control"  placeholder="Actualizar correo" formControlName="correo">
+                    <input type="text" class="form-control"   formControlName="correo" readonly>
                 </div>
                 <div class="form-group row">
                     <div class="col">
                         <label for="exampleFormControlInput1"></label>
-                        <input type="text" class="form-control"  placeholder="Actualizar contraseña" formControlName="password">     
+                        <input type="text" class="form-control"   formControlName="password" readonly>     
                     </div>
                     <div class="col">
                         <label for="exampleFormControlInput1"></label>
-                        <input type="text" class="form-control"  placeholder="Actualizar rol" formControlName="role">     
+                        <input type="text" class="form-control"   formControlName="role" readonly>     
                     </div>
                    
                 </div>
                 <br><br>
-                <button type="submit" class="btn btn-primary" (click)="reload()">Guardar</button>
+                <button type="submit" class="btn btn-danger" (click)="reload()">Borrar</button>
                 
                 <button type="button" class="btn btn-dark" (click)="closeform()" >Salir</button>
                 
     </form>
 
 </div>
+

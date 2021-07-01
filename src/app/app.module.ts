@@ -42,6 +42,7 @@ import { PeticionesInterceptor } from './interceptores/peticiones.interceptor';
 import {  MatOptionModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { EditarusuarioComponent } from './components/dashboard/usuario/editarusuario/editarusuario.component';
+import { BorrarusuarioComponent } from './components/dashboard/usuario/borrarusuario/borrarusuario.component';
 export function tokenGetter() {
   return localStorage.getItem("jwt");
 }
@@ -61,7 +62,8 @@ export function tokenGetter() {
         ReportesComponent,
         RecursosComponent,
         CrearusuarioComponent,
-        EditarusuarioComponent
+        EditarusuarioComponent,
+        BorrarusuarioComponent
    
   ],
   imports: [

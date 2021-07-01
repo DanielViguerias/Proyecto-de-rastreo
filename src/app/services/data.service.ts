@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { PeticionesInterceptor } from '../interceptores/peticiones.interceptor';
+import { ResponseI } from '../models/response';
 @Injectable({
   providedIn: 'root'
 })
@@ -24,20 +25,12 @@ ngOnInit():void{
   
 }
 //Para el login hace la conexion
- login(correo:string, password:string ) {
-  return this.http.post<usuario>(this.urlApi + "Login",{correo,password}).subscribe(
-    (resp:any) => {
-      this.toastr.success("Inicio de sesión aprobado!!")
-        this.router.navigateByUrl('/dashboard');
-        localStorage.setItem("auth_token",resp.token)
-       this.cookies.set('auth_token',resp.token)
-       this.cookies.get('auth_token')
-    },err=>{
-      this.toastr.error("Usuario o contraseña invalido")
-      console.log(err);
-    }
-);         
-}
+ login(form: usuario ):Observable<ResponseI> {
+  let url = this.urlApi + "Login";
+  return this.http.post<ResponseI>(url,form)
+  }
+
+
 
 logout(){
   localStorage.removeItem("auth_token")

@@ -13,6 +13,7 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { LoginComponent } from './components/inicio/login/login.component';
 import { AccessguardGuard } from './guards/accessguard.guard';
 import { EditarusuarioComponent } from './components/dashboard/usuario/editarusuario/editarusuario.component';
+import { BorrarusuarioComponent } from './components/dashboard/usuario/borrarusuario/borrarusuario.component';
 
 const routes: Routes = [
   {path:"", redirectTo:'/inicio', pathMatch:'full'},
@@ -20,11 +21,12 @@ const routes: Routes = [
     {path:'', component: BienvenidaComponent},
     {path: 'login', component: LoginComponent}
   ]},
-  {path: 'dashboard', canActivate:[AccessguardGuard],component: DashboardComponent, children:[
+  {path: 'dashboard',component: DashboardComponent, children:[
     {path:'home', component:MapaComponent},
     {path:'usuario', component:UsuariosComponent,children:[
       {path:'crearusuario',component:CrearusuarioComponent},
-      {path:'editarusuario/:id',component:EditarusuarioComponent}
+      {path:'editarusuario/:id',component:EditarusuarioComponent},
+      {path:'borrarusuario/:id',component:BorrarusuarioComponent}
       
     ]},
     {path:'lugar', component:LugaresComponent},

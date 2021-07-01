@@ -37,5 +37,7 @@ editar_usuario(id:any){
   nuevo_usuario(){
     this.router.navigate(['dashboard/usuario/crearusuario'])
   }
-  
+  borrar_usuario(id:any){
+    this.router.navigate(['/dashboard/usuario/borrarusuario', id])
+  }
 }

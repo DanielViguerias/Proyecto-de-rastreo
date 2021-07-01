@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { catchError } from 'rxjs/operators';
 import { putusuarioI } from '../models/usuarioPUT';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -76,12 +77,29 @@ errorHandler(error: { error: { message: string; }; status: any; message: any; })
         });
   }
 
-  putuser(put : ListaUsuariosI){
-    
+  putuser(form: putusuarioI,id:any):Observable<putusuarioI>{
+    let url = this.urlApi + "Usuario/" + id
+    return this.http.put<putusuarioI>(url,form)
   }
   get_user(id:any): Observable<putusuarioI>{
     let url = this.urlApi + "Usuario/" + id
     return this.http.get<putusuarioI>(url);
+  }
+  logout(){
+    localStorage.removeItem("auth_token")
+    this.cookies.deleteAll("auth_token")
+    this.router.navigateByUrl('/inicio')
+  }
+  delete(form:ListaUsuariosI,id:any):Observable<ListaUsuariosI>{
+    let url = this.urlApi + "Usuario/" + id
+    let options = {
+      headers: new HttpHeaders({
+        'Content-type':'application/json'
+      }),
+      body:form
+    }
+    return this.http.delete<ListaUsuariosI>(url,options)
+
   }
   
 }

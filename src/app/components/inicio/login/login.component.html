@@ -5,7 +5,7 @@
                 <h3>Inicio de Sesión</h3>
 
                 <app-loading *ngIf="loading"></app-loading>
-                <form [formGroup]="login" (ngSubmit)=log() style="padding-top: 10px;">
+                <form [formGroup]="login" (ngSubmit)="log(login.value)" style="padding-top: 10px;">
                     <div class="form-group" style="text-align: start;">
                         <input type="email" class="form-control" placeholder="Correo" formControlName="correo" maxlength="30">
                         <span class="text-danger ml-2" *ngIf="login.controls['correo'].errors?.required && login.controls['correo'].touched">

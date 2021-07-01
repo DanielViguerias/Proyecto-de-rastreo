@@ -1,40 +1,37 @@
-import { putusuarioI } from './../../../../models/usuarioPUT';
-import { Router,ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { putusuarioI } from 'src/app/models/usuarioPUT';
+import { ListaUsuariosI } from 'src/app/models/usuarios.interface';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { FormGroup,Validators,FormControl, FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'app-editarusuario',
-  templateUrl: './editarusuario.component.html',
-  styleUrls: ['./editarusuario.component.css']
+  selector: 'app-borrarusuario',
+  templateUrl: './borrarusuario.component.html',
+  styleUrls: ['./borrarusuario.component.css']
 })
-export class EditarusuarioComponent implements OnInit {
-    editarform:FormGroup;
-   
+export class BorrarusuarioComponent implements OnInit {
+  borrarform:FormGroup;
   constructor(private router:Router,private activateroute:ActivatedRoute,
-    private userservice:UsuarioService, private fb:FormBuilder,
-    ) {
-      this.editarform = this.fb.group({
+    private userservice:UsuarioService, private fb:FormBuilder) { 
+    this.borrarform = this.fb.group({
       usuarioid:new FormControl(''),
       nombre: new FormControl(''),
       correo: new FormControl(''),
       password: new FormControl(''),
       role:new FormControl('')
     });
-   
     this.datosusuarios=[]
-     }
-     datosusuarios:Array<putusuarioI>;
-     
-    
+  }
+  datosusuarios:Array<putusuarioI>;
+  
 
   ngOnInit(): void {
     let id = this.activateroute.snapshot.paramMap.get('id')
     this.userservice.get_user(id).subscribe(data=> {
     
       this.datosusuarios[0] = data;
-      this.editarform.setValue({
+      this.borrarform.setValue({
         'usuarioid':this.datosusuarios[0].usuarioid,
         'nombre':this.datosusuarios[0].nombre,
         'correo':this.datosusuarios[0].correo,
@@ -48,18 +45,16 @@ export class EditarusuarioComponent implements OnInit {
       
      )
   }
-  postform(form:putusuarioI){
+  delete(form:ListaUsuariosI){
     let id = this.activateroute.snapshot.paramMap.get('id')
-    this.userservice.putuser(form,id).subscribe(data =>{
-      console.log(data)
-      
-    })
+    this.userservice.delete(form,id)
+  }
+  reload(){
+    location.reload()
+    this.borrarform.reset()
   }
 closeform(){
   this.router.navigateByUrl('/dashboard/usuario')
-  this.editarform.reset()
-}
-reload(){
-  location.reload()
+  
 }
 }

@@ -1,5 +1,5 @@
 export interface putusuarioI{
-    usuarioid:number;
+    usuarioid?:number;
     nombre: string;
     correo: string;
     password: string;
