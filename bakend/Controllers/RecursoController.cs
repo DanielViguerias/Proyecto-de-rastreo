@@ -67,7 +67,7 @@ namespace bakend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Putrecurso(int id, recurso recurso)
         {
-            if ((id != recurso.RecursoId) || (recurso.active = false))
+            if ((id != recurso.RecursoId))
             {
                 return BadRequest("Registro no encontrado");
             }
