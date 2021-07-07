@@ -13,9 +13,9 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class BorrarusuarioComponent implements OnInit {
   borrarform:FormGroup;
   constructor(private router:Router,private activateroute:ActivatedRoute,
-    private userservice:UsuarioService, private fb:FormBuilder) { 
-    this.borrarform = this.fb.group({
-      usuarioid:new FormControl(''),
+  private userservice:UsuarioService, private fb:FormBuilder) { 
+  this.borrarform = this.fb.group({
+      usuarioid: new FormControl(''),
       nombre: new FormControl(''),
       correo: new FormControl(''),
       password: new FormControl(''),
@@ -53,8 +53,8 @@ export class BorrarusuarioComponent implements OnInit {
     location.reload()
     this.borrarform.reset()
   }
-closeform(){
+  closeform(){
   this.router.navigateByUrl('/dashboard/usuario')
   
-}
+  }
 }

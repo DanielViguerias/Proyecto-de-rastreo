@@ -20,9 +20,9 @@
 
             <td>
 
-              <button type="button" class="btn btn-outline-info">Editar</button>
+              <button type="button" class="btn btn-outline-info" (click)="editar_recurso(recurso.recursoId)">Editar</button>
         
-              <button type="button" class="btn btn-outline-danger">Borrar</button>
+              <button type="button" class="btn btn-outline-danger" (click)="borrar_recurso(recurso.recursoId)">Borrar</button>
               
         
             </td>
@@ -30,7 +30,8 @@
           </tr>
         </tbody>
       </table>
-      <button routerLink="crearusuario" type="button" class="btn btn-success">Success</button>
+      <button  (click)="nuevo_recurso()" type="button" class="btn btn-success">Agregar recurso</button>
      
-   </div>
-  </body>
+  </div><br><br>
+  <router-outlet></router-outlet>
+ </body>

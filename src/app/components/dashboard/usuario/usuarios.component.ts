@@ -15,8 +15,7 @@ export class UsuariosComponent implements OnInit {
   
 
   constructor(public usuarioservice:UsuarioService, 
-    private router:Router
-    ,private comp:CrearusuarioComponent) { 
+    private router:Router) { 
     this.usuarios = [];
     
   }

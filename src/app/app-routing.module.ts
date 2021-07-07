@@ -1,4 +1,5 @@
 import { CrearusuarioComponent } from './components/dashboard/usuario/crearusuario/crearusuario.component';
+import { CrearrecursoComponent } from './components/dashboard/recursos/crearrecurso/crearrecurso.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -14,6 +15,8 @@ import { LoginComponent } from './components/inicio/login/login.component';
 import { AccessguardGuard } from './guards/accessguard.guard';
 import { EditarusuarioComponent } from './components/dashboard/usuario/editarusuario/editarusuario.component';
 import { BorrarusuarioComponent } from './components/dashboard/usuario/borrarusuario/borrarusuario.component';
+import { EditarrecursoComponent } from './components/dashboard/recursos/editarrecurso/editarrecurso.component';
+import { BorrarrecursoComponent } from './components/dashboard/recursos/borrarrecurso/borrarrecurso.component';
 
 const routes: Routes = [
   {path:"", redirectTo:'/inicio', pathMatch:'full'},
@@ -30,8 +33,14 @@ const routes: Routes = [
       
     ]},
     {path:'lugar', component:LugaresComponent},
-    {path:'recurso', component:RecursosComponent},
-    {path:'reporte', component:ReportesComponent}
+    {path:'recurso', component:RecursosComponent, children:[
+      {path:'crearrecurso',component:CrearrecursoComponent},
+      {path:'editarrecurso/:id',component:EditarrecursoComponent},
+      {path:'borrarrecurso/:id',component:BorrarrecursoComponent}
+    ]},
+    
+    {path:'reporte', component:ReportesComponent},
+
   ]}
   ,
   {path:'**', redirectTo:'/inicio',pathMatch:'full'}

@@ -43,6 +43,9 @@ import {  MatOptionModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { EditarusuarioComponent } from './components/dashboard/usuario/editarusuario/editarusuario.component';
 import { BorrarusuarioComponent } from './components/dashboard/usuario/borrarusuario/borrarusuario.component';
+import { CrearrecursoComponent } from './components/dashboard/recursos/crearrecurso/crearrecurso.component';
+import { EditarrecursoComponent } from './components/dashboard/recursos/editarrecurso/editarrecurso.component';
+import { BorrarrecursoComponent } from './components/dashboard/recursos/borrarrecurso/borrarrecurso.component';
 export function tokenGetter() {
   return localStorage.getItem("jwt");
 }
@@ -63,7 +66,10 @@ export function tokenGetter() {
         RecursosComponent,
         CrearusuarioComponent,
         EditarusuarioComponent,
-        BorrarusuarioComponent
+        BorrarusuarioComponent,
+        CrearrecursoComponent,
+        EditarrecursoComponent,
+        BorrarrecursoComponent
    
   ],
   imports: [
@@ -97,7 +103,7 @@ export function tokenGetter() {
    
   ],
   providers: [
-    CookieService,CrearusuarioComponent,
+    CookieService, CrearusuarioComponent, CrearrecursoComponent,
     {
       provide:HTTP_INTERCEPTORS,
       useClass:PeticionesInterceptor,

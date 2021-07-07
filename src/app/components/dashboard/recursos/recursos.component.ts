@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RecursosI } from 'src/app/models/recursos.interface';
 import { RecursoService } from 'src/app/services/recursos.service';
-;
 
 @Component({
   selector: 'app-recursos',
@@ -12,7 +11,8 @@ import { RecursoService } from 'src/app/services/recursos.service';
 export class RecursosComponent implements OnInit {
   recursos:Array<RecursosI>
 
-  constructor(public recursoservice:RecursoService, private router:Router) { 
+  constructor(public recursoservice:RecursoService, 
+    private router:Router) { 
     this.recursos = [];
   }
 
@@ -22,4 +22,14 @@ export class RecursosComponent implements OnInit {
     console.log(data);
   })
   }
-}
+  editar_recurso(id:any){
+    this.router.navigate(['/dashboard/recurso/editarrecurso',id]);
+    console.log(id)
+  }
+    nuevo_recurso(){
+      this.router.navigate(['/dashboard/recurso/crearrecurso']);
+    }
+    borrar_recurso(id:any){
+      this.router.navigate(['/dashboard/recurso/borrarrecurso', id]);
+    }
+  }

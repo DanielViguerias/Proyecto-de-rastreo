@@ -1,0 +1,23 @@
+<div class="container">
+
+    <form [formGroup]="editarform" (ngSubmit)="postform(editarform.value)">
+        <div class="form-group">
+            <label for="exampleFormControlInput1"></label>
+            <input type="text" class="form-control"  placeholder=" Actualizar id" formControlName="recursoId" readonly>
+    </div>
+            <div class="form-group">
+                    <label for="exampleFormControlInput1"></label>
+                    <input type="text" class="form-control"  placeholder=" Actualizar nombre" formControlName="nombre">
+            </div>
+            <div class="form-group">
+                    <label for="exampleFormControlInput1"></label>
+                    <input type="text" class="form-control"  placeholder="Actualizar tipo" formControlName="tipo">
+                </div>
+                <br><br>
+                <button type="submit" class="btn btn-primary" (click)="reload()">Guardar</button>
+                
+                <button type="button" class="btn btn-dark" (click)="closeform()" >Salir</button>
+                
+    </form>
+
+</div>

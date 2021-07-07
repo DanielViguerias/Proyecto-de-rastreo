@@ -43,9 +43,7 @@ export class CrearusuarioComponent implements OnInit {
     this.userservice.crear_usuario(user).subscribe(data => console.log(data),err =>{
       this.toastr.error(err)
       console.log(err)
-      this.newuser.reset()
-      
-        })
+      this.newuser.reset() })
 
 }
 closeform(){
