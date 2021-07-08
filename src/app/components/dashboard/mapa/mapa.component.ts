@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 
 
 
@@ -7,26 +7,26 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './mapa.component.html',
   styleUrls: ['./mapa.component.css']
 })
-export class MapaComponent implements OnInit {
+export class MapaComponent implements AfterViewInit {
   lat = 22.150530757970497;
-   lng = -102.35722068356765; 
+   lng = -102.35722068356765;
    zoom = 10;
-  
 
 
-  
+
+
   constructor() { }
 
-  ngOnInit(): void {
-   
-  
+  ngAfterViewInit(): void {
+
+   let map: google.maps.Map;
+    map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
+      center: { lat: 21.884742491492943, lng:-102.29384938302277 },
+      zoom: 10
+    });
   }
   initmap(): void{
-    let map: google.maps.Map;
-    map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-      center: { lat: 21.884742491492943, lng:-102.29384938302277 },  
-      zoom: 10,
-    });
+
 
   }
 }
