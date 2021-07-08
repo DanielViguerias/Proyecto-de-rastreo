@@ -48,7 +48,8 @@ namespace BackEnd.Controllers
                 usuario.password = Encrypt.GetSHA256(usuario.password);
 
                  var user = (await _context.Usuario.SingleOrDefaultAsync(x => x.correo == usuario.correo 
-                                                                         && x.password == usuario.password   
+                                                                         && x.password == usuario.password 
+                                                                         && x.active==true  
                  ));
                 
                 //var user = await _context.usuarios.SingleAsync(b => b.correo == usuario.correo && b.password == usuario.password);
