@@ -1,0 +1,11 @@
+<mat-sidenav-container>
+    <mat-sidenav-content>
+      <div class="content mat-elevation-z8">
+        <div class="content mat-elevation-z4">
+          <agm-map [latitude]="lat" [zoom]="zoom" [longitude]="lng" class="content mat-elevation-z4">
+            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+          </agm-map>
+        </div>
+      </div>
+  </mat-sidenav-content>
+  </mat-sidenav-container>

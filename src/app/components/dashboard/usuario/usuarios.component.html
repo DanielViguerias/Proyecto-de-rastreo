@@ -1,0 +1,33 @@
+<body>
+<div class="container">
+    <h1>Usuarios</h1>
+    <button  (click)="nuevo_usuario()" type="button" class="btn btn-success">Agregar usuario</button>
+<br><br>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Role</th>
+          <th width="305px">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <th scope="row">{{ usuario.usuarioid }}</th>
+          <td>{{ usuario.nombre }}</td>
+          <td>{{ usuario.correo }}</td>
+          <td>{{ usuario.role }}</td>
+          <td>
+
+            <button type="button" class="btn btn-outline-info" style="margin: 10px" (click)="editar_usuario(usuario.usuarioid)">Editar</button>
+      
+            <button type="button" class="btn btn-outline-danger" style="margin-left: 10px" (click)="borrar_usuario(usuario.usuarioid)">Borrar</button>
+            
+          </td>
+        </tr>
+      </tbody>
+    </table><br>
+ </div><br><br>
+</body>

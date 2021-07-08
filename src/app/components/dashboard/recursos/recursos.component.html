@@ -1,0 +1,34 @@
+<body>
+  <div class="container">
+      
+      <h1>Recursos</h1>
+      <button  (click)="nuevo_recurso()" type="button" class="btn btn-success">Agregar Recurso</button>
+      <br><br>
+  
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Tipo</th>
+            <th width="305px">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let recurso of recursos">
+            <th scope="row">{{ recurso.recursoId }}</th>
+            <td>{{ recurso.nombre }}</td>
+            <td>{{ recurso.tipo }}</td>
+            <td>
+
+              <button type="button" class="btn btn-outline-info" style="margin: 10px" (click)="editar_recurso(recurso.recursoId)">Editar</button>
+        
+              <button type="button" class="btn btn-outline-danger" style="margin-left: 10px" (click)="borrar_recurso(recurso.recursoId)">Borrar</button>
+              
+            </td>
+  
+          </tr>
+        </tbody>
+      </table>
+   </div>
+  </body>

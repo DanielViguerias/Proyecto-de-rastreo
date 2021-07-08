@@ -1,0 +1,16 @@
+.container{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+h3{
+    font-family: 'Ubuntu', sans-serif ;
+    
+}
+
+.btn-login{
+    background-color: darkblue;
+    border-color: darkblue;
+}
