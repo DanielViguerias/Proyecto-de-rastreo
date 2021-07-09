@@ -26,7 +26,8 @@ const routes: Routes = [
     {path:'', component: BienvenidaComponent},
     {path: 'login', component: LoginComponent}
   ]},
-  {path: 'dashboard',component: DashboardComponent, children:[
+  {path: 'dashboard',component: DashboardComponent,children:[
+    {path: '',component:MapaComponent},
     {path:'home', component:MapaComponent},
     {path:'usuario', component:UsuariosComponent},
       {path:'crearusuario',component:CrearusuarioComponent},
