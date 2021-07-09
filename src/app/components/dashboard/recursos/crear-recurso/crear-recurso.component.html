@@ -16,7 +16,7 @@
             
         <div class="form-group" style="text-align: start;">
             <input type="text" class="form-control" placeholder="Tipo" formControlName="tipo" maxlength="30">
-            <span class="text-danger ml-2" *ngIf="newRecurso.controls['correo'].errors?.required && newRecurso.controls['correo'].touched">
+            <span class="text-danger ml-2" *ngIf="newRecurso.controls['tipo'].errors?.required && newRecurso.controls['tipo'].touched">
         Es necesario ingresar un tipo de recurso</span>
         </div>
           

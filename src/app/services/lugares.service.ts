@@ -26,4 +26,12 @@ ngOnInit():void{
 get_lugares(): Observable<LugarI[]> {
   return this.http.get<LugarI[]>(this.urlApi + "Lugar");
  }
+ putlugar(form: LugarI,id:any):Observable<LugarI>{
+  let url = this.urlApi + "Lugar/" + id
+  return this.http.put<LugarI>(url,form)
+}
+get_lugar(id:any): Observable<LugarI>{
+  let url = this.urlApi + "Lugar/" + id
+  return this.http.get<LugarI>(url);
+}
 }

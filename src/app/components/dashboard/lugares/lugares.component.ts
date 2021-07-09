@@ -21,4 +21,8 @@ export class LugaresComponent implements OnInit {
     console.log(data);
   })
   }
+  editar_lugar(id:any){
+    this.router.navigate(['dashboard/editarLugar',id])
+    console.log(id)
+  }
 }

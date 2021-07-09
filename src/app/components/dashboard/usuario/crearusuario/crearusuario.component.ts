@@ -26,9 +26,9 @@ export class CrearusuarioComponent implements OnInit {
     private router:Router,
     private toastr:ToastrService) { 
     this.newuser = this.fb.group({
-      nombre:['',[Validators.required]],
-      password:['',[Validators.required,Validators.maxLength(8)]],
-      correo:['',[Validators.required]],
+      nombre:['',[Validators.required, Validators.maxLength(30)]],
+      password:['',[Validators.required, Validators.minLength(8), Validators.maxLength(16)]],
+      correo:['',[Validators.required, Validators.email]],
       role:['',[Validators.required]]
     })
   }
@@ -43,8 +43,10 @@ export class CrearusuarioComponent implements OnInit {
     this.userservice.crear_usuario(user).subscribe(data => console.log(data),err =>{
       this.toastr.error(err)
       console.log(err)
-      this.newuser.reset()})
-
+    })
+}
+reload(){
+  this.newuser.reset();
 }
 
 closeform(){

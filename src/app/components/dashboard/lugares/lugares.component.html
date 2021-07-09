@@ -2,6 +2,8 @@
   <div class="container">
       
       <h1>Lugares</h1>
+      <button routerLink="crearusuario" type="button" class="btn btn-success">Actualizar</button>
+      <br><br>
   
       <table class="table table-bordered">
         <thead>
@@ -22,21 +24,12 @@
             <td>{{ lugar.domicilio }}</td>
             <td>{{ lugar.latitud }}</td>
             <td>{{ lugar.longitud }}</td>
-
             <td>
-
-              <button type="button" class="btn btn-outline-info">Editar</button>
-        
-              <button type="button" class="btn btn-outline-danger">Borrar</button>
-              
-        
+              <button type="button" class="btn btn-outline-info" (click)="editar_lugar(lugar.lugarId)">Editar</button>
             </td>
-  
           </tr>
         </tbody>
-      </table>
-      <button routerLink="crearusuario" type="button" class="btn btn-success">Success</button>
-     
+      </table> 
    </div>
   </body>
 

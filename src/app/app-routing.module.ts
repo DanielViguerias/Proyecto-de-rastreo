@@ -17,6 +17,7 @@ import { BorrarusuarioComponent } from './components/dashboard/usuario/borrarusu
 import { CrearRecursoComponent } from './components/dashboard/recursos/crear-recurso/crear-recurso.component';
 import { EditarRecursoComponent } from './components/dashboard/recursos/editar-recurso/editar-recurso.component';
 import { EliminarRecursoComponent } from './components/dashboard/recursos/eliminar-recurso/eliminar-recurso.component';
+import { EditarLugaresComponent } from './components/dashboard/lugares/editar-lugares/editar-lugares.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
       {path:'editarusuario/:id',component:EditarusuarioComponent},
       {path:'borrarusuario/:id',component:BorrarusuarioComponent},
     {path:'lugar', component:LugaresComponent},
+    {path: 'editarLugar/:id', component: EditarLugaresComponent},
     {path:'recurso', component:RecursosComponent},
     {path: 'crearRecurso', component:CrearRecursoComponent},
     {path: 'editarRecurso/:id', component:EditarRecursoComponent},
