@@ -47,6 +47,7 @@ import { CrearRecursoComponent } from './components/dashboard/recursos/crear-rec
 import { EditarRecursoComponent } from './components/dashboard/recursos/editar-recurso/editar-recurso.component';
 import { EliminarRecursoComponent } from './components/dashboard/recursos/eliminar-recurso/eliminar-recurso.component';
 import { EditarLugaresComponent } from './components/dashboard/lugares/editar-lugares/editar-lugares.component';
+import { UsuarioRecursoComponent} from './components/dashboard/usuario-recurso/usuario-recurso.component';
 export function tokenGetter() {
   return localStorage.getItem("jwt");
 }
@@ -72,6 +73,7 @@ export function tokenGetter() {
         EditarRecursoComponent,
         EliminarRecursoComponent,
         EditarLugaresComponent,
+        UsuarioRecursoComponent
         
    
   ],

@@ -18,6 +18,7 @@ import { CrearRecursoComponent } from './components/dashboard/recursos/crear-rec
 import { EditarRecursoComponent } from './components/dashboard/recursos/editar-recurso/editar-recurso.component';
 import { EliminarRecursoComponent } from './components/dashboard/recursos/eliminar-recurso/eliminar-recurso.component';
 import { EditarLugaresComponent } from './components/dashboard/lugares/editar-lugares/editar-lugares.component';
+import { UsuarioRecursoComponent} from '../app/components/dashboard/usuario-recurso/usuario-recurso.component';
 
 
 const routes: Routes = [
@@ -39,7 +40,8 @@ const routes: Routes = [
     {path: 'crearRecurso', component:CrearRecursoComponent},
     {path: 'editarRecurso/:id', component:EditarRecursoComponent},
     {path: 'eliminarRecurso/:id', component:EliminarRecursoComponent},
-    {path:'reporte', component:ReportesComponent}
+    {path:'reporte', component:ReportesComponent},
+    {path: 'usuarioRecurso', component:UsuarioRecursoComponent}
   ]}
   ,
   {path:'**', redirectTo:'/inicio',pathMatch:'full'}
