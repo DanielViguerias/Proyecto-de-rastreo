@@ -29,7 +29,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/dashboard/navbar/navbar.component';
 import { MapaComponent } from './components/dashboard/mapa/mapa.component';
 import { LoadingComponent } from './shared/loading/loading.component';
-import { AgmCoreModule } from '@agm/core';
 import { UsuariosComponent} from '../app/components/dashboard/usuario/usuarios.component';
 import { LugaresComponent } from './components/dashboard/lugares/lugares.component';
 import { ReportesComponent } from './components/dashboard/reportes/reportes.component';
@@ -60,7 +59,7 @@ export function tokenGetter() {
     DashboardComponent,
     NavbarComponent,
     MapaComponent,
-   
+ 
     LoadingComponent,
         UsuariosComponent,
         LugaresComponent,
@@ -94,9 +93,6 @@ export function tokenGetter() {
     MatGridListModule,
     MatOptionModule,
     MatSelectModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCIl1tt4ATvtVLkyvPLC96PwQZCsKf6tWo'    
-   }),
    HttpClientModule,
    JwtModule.forRoot({
     config: {

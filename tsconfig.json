@@ -19,9 +19,13 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "types": ["google.maps"],
+    "skipLibCheck": true
+
   },
   "angularCompilerOptions": {
+    "enableIvy": false,
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,

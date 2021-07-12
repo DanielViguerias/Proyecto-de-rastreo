@@ -1,11 +1,10 @@
-agm-map{
-    width: 1320px;
-    height: 600px;
+#map{
+   
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    min-width: 100vw;
+    min-height: 90vh;
+    min-width: 95vw;
 
 }
