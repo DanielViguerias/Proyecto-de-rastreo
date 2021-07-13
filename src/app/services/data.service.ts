@@ -12,7 +12,7 @@ import { ResponseI } from '../models/response';
   providedIn: 'root'
 })
 export class AuthService implements OnInit{
- private urlApi  = "https://localhost:5001/api/";
+ private urlApi  = "http://localhost:5000/api/";
  
   
  constructor(private http:HttpClient,

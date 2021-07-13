@@ -10,7 +10,7 @@ import { PeticionesInterceptor } from '../interceptores/peticiones.interceptor';
   providedIn: 'root'
 })
 export class LugaresService implements OnInit{
- private urlApi  = "https://localhost:5001/api/";
+ private urlApi  = "http://localhost:5000/api/";
  
   
  constructor(private http:HttpClient,

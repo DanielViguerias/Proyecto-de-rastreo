@@ -53,14 +53,15 @@ export class MapaComponent implements AfterViewInit {
 
 
 
-    const center: google.maps.LatLngLiteral = { lat: 30, lng: -110 };
+    const center: google.maps.LatLngLiteral = { lat: 21.921427882183703 , lng: -102.29496958768634 };
     function initMap(): void {
       map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
         center,
-        zoom: 8,
+        zoom: 20,
         mapTypeControl: false,
         streetViewControl: false,
-        fullscreenControl: false
+        fullscreenControl: false,
+        mapTypeId: "satellite"
       });
       const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -86,7 +87,7 @@ export class MapaComponent implements AfterViewInit {
         strokeOpacity:0.8,
         strokeWeight:2,
         fillColor:"#0000FF",
-        fillOpacity:0.4
+        fillOpacity:0.8
       })
       flightpath.addListener('mouseover',()=>{
         console.log("paso por la figura");
@@ -105,7 +106,9 @@ export class MapaComponent implements AfterViewInit {
           ],
         },
         markerOptions: {
-          icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+          icon: "../../../../assets/img/building.png",
+          draggable: true
+
         },
         polygonOptions: {
           fillColor: "#ffff00",
