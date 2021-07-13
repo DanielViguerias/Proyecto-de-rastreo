@@ -57,7 +57,7 @@ export class MapaComponent implements AfterViewInit {
     function initMap(): void {
       map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
         center,
-        zoom: 20,
+        zoom: 18,
         mapTypeControl: false,
         streetViewControl: false,
         fullscreenControl: false,

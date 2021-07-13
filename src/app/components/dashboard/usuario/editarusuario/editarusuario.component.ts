@@ -3,6 +3,8 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { FormGroup,Validators,FormControl, FormBuilder } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-editarusuario',
@@ -13,7 +15,7 @@ export class EditarusuarioComponent implements OnInit {
     editarform:FormGroup;
    
   constructor(private router:Router,private activateroute:ActivatedRoute,
-    private userservice:UsuarioService, private fb:FormBuilder,
+    private userservice:UsuarioService, private fb:FormBuilder, private toastr:ToastrService 
     ) {
       this.editarform = this.fb.group({
       usuarioid:new FormControl(''),
@@ -48,18 +50,27 @@ export class EditarusuarioComponent implements OnInit {
       
      )
   }
-  postform(form:putusuarioI){
+  async postform(form:putusuarioI){
     let id = this.activateroute.snapshot.paramMap.get('id')
     this.userservice.putuser(form,id).subscribe(data =>{
       console.log(data)
-      
+     // this.router.navigateByUrl('/dashboard/usuario')
     })
   }
 closeform(){
-  this.router.navigateByUrl('/dashboard/usuario')
   this.editarform.reset()
+  this.router.navigateByUrl('/dashboard/usuario')
+  
 }
-reload(){
-  location.reload()
+async reload(){
+
+this.toastr.success("El registro se ha editado con exito")
+ 
+location.reload()
+ //console.log("hola",this.router.navigateByUrl("/dashboard/usuario"));
+ 
+ //this.router.navigateByUrl('/dashboard/usuario')
 }
+
+
 }
