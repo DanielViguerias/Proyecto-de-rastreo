@@ -691,3 +691,4 @@ C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\bin\Debug\net5.0\Micros
 C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\bin\Debug\net5.0\Microsoft.Spatial.dll
 C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\obj\Debug\net5.0\staticwebassets\bakend.StaticWebAssets.xml
