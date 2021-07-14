@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import Swal from 'sweetalert2';
 
 
 
@@ -37,6 +38,13 @@ export class CrearusuarioComponent implements OnInit {
   }
 
   enviar(){
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Usuario guardado con éxito',
+      showConfirmButton: false,
+      timer: 3000
+    })
     const user= this.newuser.value;
     console.log(user);
 
@@ -44,6 +52,7 @@ export class CrearusuarioComponent implements OnInit {
       this.toastr.error(err)
       console.log(err)
     })
+   this.router.navigate(['/dashboard/usuario'])
 }
 reload(){
   this.newuser.reset();

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RecursoService } from 'src/app/services/recursos.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-crear-recurso',
   templateUrl: './crear-recurso.component.html',
@@ -27,6 +28,13 @@ export class CrearRecursoComponent implements OnInit {
   }
 
   enviar(){
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Recurso guardado con éxito',
+      showConfirmButton: false,
+      timer: 3000
+    })
     const recurso= this.newRecurso.value;
     console.log(recurso);
 

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { putRecursosI } from 'src/app/models/recursoPut';
 import { RecursosI } from 'src/app/models/recursos.interface';
 import { RecursoService } from 'src/app/services/recursos.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-eliminar-recurso',
@@ -43,9 +44,30 @@ export class EliminarRecursoComponent implements OnInit {
      )
   }
   delete(form:RecursosI){
-    let id = this.activateroute.snapshot.paramMap.get('id')
-    this.recursoservice.delete(form,id).subscribe(data =>{
-      console.log(data)
+    Swal.fire({
+      title: 'Estás seguro?',
+      text: "No puedes revertir está acción!",
+      icon: 'warning',
+      timer: 3000,
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si,estoy de acuerdo!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Borrado!',
+          'El usuario ha sido eliminado.',
+          'success'
+        )
+        let id = this.activateroute.snapshot.paramMap.get('id')
+        this.recursoservice.delete(form,id).subscribe(data =>{
+          console.log(data)
+     
+    })
+    this.router.navigate(['/dashboard/recurso'])
+    
+      }
     })
   }
   reload(){

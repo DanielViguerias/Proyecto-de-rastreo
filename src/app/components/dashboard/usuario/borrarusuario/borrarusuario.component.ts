@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ListaUsuariosI } from 'src/app/models/usuarios.interface';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-borrarusuario',
@@ -47,9 +48,29 @@ export class BorrarusuarioComponent implements OnInit {
      )
   }
   delete(form:ListaUsuariosI){
-    let id = this.activateroute.snapshot.paramMap.get('id')
+    Swal.fire({
+      title: 'Estás seguro?',
+      text: "No puedes revertir está acción!",
+      icon: 'warning',
+      timer: 3000,
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si,estoy de acuerdo!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Borrado!',
+          'El usuario ha sido eliminado.',
+          'success'
+        )
+        let id = this.activateroute.snapshot.paramMap.get('id')
     this.userservice.delete(form,id).subscribe(data =>{
       console.log(data)
+     
+    })
+    this.router.navigate(['/dashboard/usuario'])
+      }
     })
   }
   reload(){

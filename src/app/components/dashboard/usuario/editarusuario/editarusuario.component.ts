@@ -3,9 +3,8 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { FormGroup,Validators,FormControl, FormBuilder } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
-
-
+import Swal from 'sweetalert2'
+import { timer } from 'rxjs';
 @Component({
   selector: 'app-editarusuario',
   templateUrl: './editarusuario.component.html',
@@ -15,7 +14,7 @@ export class EditarusuarioComponent implements OnInit {
     editarform:FormGroup;
    
   constructor(private router:Router,private activateroute:ActivatedRoute,
-    private userservice:UsuarioService, private fb:FormBuilder, private toastr:ToastrService 
+    private userservice:UsuarioService, private fb:FormBuilder,
     ) {
       this.editarform = this.fb.group({
       usuarioid:new FormControl(''),
@@ -50,27 +49,37 @@ export class EditarusuarioComponent implements OnInit {
       
      )
   }
-  async postform(form:putusuarioI){
-    let id = this.activateroute.snapshot.paramMap.get('id')
-    this.userservice.putuser(form,id).subscribe(data =>{
-      console.log(data)
-     // this.router.navigateByUrl('/dashboard/usuario')
+  postform(form:putusuarioI){
+   
+    Swal.fire({
+      title: 'Deseas guardar los cambios?',
+      showDenyButton: true,
+      timer:3000,
+      showCancelButton: true,
+      confirmButtonText: `Guardar`,
+      denyButtonText: `No guardar`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+       
+        let id = this.activateroute.snapshot.paramMap.get('id')
+        Swal.fire('Se realizó con éxito!', '', 'success')
+        this.userservice.putuser(form,id).subscribe(data =>{
+          console.log(data)
+         
+        })
+        this.router.navigate(['/dashboard/usuario'])
+   
+
+      } else if (result.isDenied) {
+        Swal.fire('Los cambios no han sido guardados', '', 'info');timer:2500
+        location.reload()
+      }
     })
   }
 closeform(){
-  this.editarform.reset()
   this.router.navigateByUrl('/dashboard/usuario')
-  
+  this.editarform.reset()
 }
-async reload(){
-
-this.toastr.success("El registro se ha editado con exito")
- 
-location.reload()
- //console.log("hola",this.router.navigateByUrl("/dashboard/usuario"));
- 
- //this.router.navigateByUrl('/dashboard/usuario')
-}
-
 
 }

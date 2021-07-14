@@ -3,6 +3,7 @@ import { putRecursosI } from './../../../../models/recursoPut';
 import { Router,ActivatedRoute } from '@angular/router';
 import { RecursoService } from 'src/app/services/recursos.service';
 import { FormGroup,Validators,FormControl, FormBuilder } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editar-recurso',
@@ -50,10 +51,30 @@ export class EditarRecursoComponent implements OnInit {
      )
   }
   postform(form:putRecursosI){
-    let id = this.activateroute.snapshot.paramMap.get('id')
-    this.recursoservice.putRecurso(form,id).subscribe(data =>{
-      console.log(data)
-      
+    Swal.fire({
+      title: 'Deseas guardar los cambios?',
+      showDenyButton: true,
+      timer:3000,
+      showCancelButton: true,
+      confirmButtonText: `Guardar`,
+      denyButtonText: `No guardar`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+       
+        let id = this.activateroute.snapshot.paramMap.get('id')
+        Swal.fire('Se realizó con éxito!', '', 'success')
+        this.recursoservice.putRecurso(form,id).subscribe(data =>{
+          console.log(data)
+         
+        })
+        this.router.navigate(['/dashboard/recurso'])
+   
+
+      } else if (result.isDenied) {
+        Swal.fire('Los cambios no han sido guardados', '', 'info');timer:2500
+        location.reload()
+      }
     })
   }
 closeform(){
