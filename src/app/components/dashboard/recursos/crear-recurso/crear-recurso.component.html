@@ -1,13 +1,14 @@
-<body>
-<br><br>
-<div class="container">
+
+<div class="img">
+    <br><br>
+<div class="container" style="padding-top: 50px; align-items: center; justify-content: center; min-height: 20vh;">
     <div class="row" style="width: 100%;">
         <div class="col-lg-6 offset-lg-3">
             <div class="card text-center" style="padding: 20px ;">
 
     <h1>Crear nuevo recurso</h1>
 
-    <form [formGroup]="newRecurso" (ngSubmit)=enviar() style="padding-top: 10px;">
+    <form [formGroup]="newRecurso" (ngSubmit)=enviar() >
         <div class="form-group" style="text-align: start;">
             <input  type="text" class="form-control" placeholder="Nombre" formControlName="nombre" maxlength="18">
             <span class="text-danger ml-2" *ngIf="newRecurso.controls['nombre'].errors?.required && newRecurso.controls['nombre'].touched ">
@@ -29,6 +30,8 @@
         </div>
     </div>
 </div>
-</body>
+</div>
+
+
 
     

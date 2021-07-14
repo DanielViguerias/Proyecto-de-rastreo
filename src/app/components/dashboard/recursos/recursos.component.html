@@ -1,6 +1,6 @@
 <body>
   <div class="container">
-      
+      <br>
       <h1>Recursos</h1>
       <button  (click)="nuevo_recurso()" type="button" class="btn btn-success">Agregar Recurso</button>
       <br><br>
@@ -21,7 +21,7 @@
             <td>{{ recurso.tipo }}</td>
             <td>
 
-              <button type="button" class="btn btn-outline-info" style="margin: 10px" (click)="editar_recurso(recurso.recursoId)">Editar</button>
+              <button type="button" class="btn btn-outline-primary" style="margin: 10px" (click)="editar_recurso(recurso.recursoId)">Editar</button>
         
               <button type="button" class="btn btn-outline-danger" style="margin-left: 10px" (click)="borrar_recurso(recurso.recursoId)">Borrar</button>
               

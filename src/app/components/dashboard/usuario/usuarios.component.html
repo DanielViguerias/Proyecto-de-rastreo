@@ -1,7 +1,8 @@
 <body>
 <div class="container">
+  <br>
     <h1>Usuarios</h1>
-    <button  (click)="nuevo_usuario()" type="button" class="btn btn-success">Agregar usuario</button>
+    <button (click)="nuevo_usuario()" type="button" class="btn btn-success">Agregar usuario</button>
 <br><br>
     <table class="table table-bordered">
       <thead>
@@ -21,7 +22,7 @@
           <td>{{ usuario.role }}</td>
           <td>
 
-            <button type="button" class="btn btn-outline-info" style="margin: 10px" (click)="editar_usuario(usuario.usuarioid)">Editar</button>
+            <button type="button" class="btn btn-outline-primary" style="margin: 10px" (click)="editar_usuario(usuario.usuarioid)">Editar</button>
       
             <button type="button" class="btn btn-outline-danger" style="margin-left: 10px" (click)="borrar_usuario(usuario.usuarioid)">Borrar</button>
             
