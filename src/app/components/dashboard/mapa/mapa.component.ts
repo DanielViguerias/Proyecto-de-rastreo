@@ -1,6 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core';
 import MarkerClusterer from '@googlemaps/markerclustererplus';
 import { } from 'google.maps';
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -16,16 +17,17 @@ export class MapaComponent implements AfterViewInit {
  
 
 
-
-
+ 
   constructor() {
-
+  
   }
   ngAfterViewInit(): void {
 
     let map: google.maps.Map;
+   //let center: [number, number] = [21.92146769460043, -102.29502323186493 ];
+    let marcadores: google.maps.Marker[] = [];
    
-    var locations = [
+    /* var locations = [
       { lat: -31.56391, lng: 147.154312 },
       { lat: -33.718234, lng: 150.363181 },
       { lat: -33.727111, lng: 150.371124 },
@@ -49,8 +51,9 @@ export class MapaComponent implements AfterViewInit {
       { lat: -42.734358, lng: 147.501315 },
       { lat: -42.735258, lng: 147.438 },
       { lat: -43.999792, lng: 170.463352 }
-    ];
+    ]; */
 
+   
 
 
     const center: google.maps.LatLngLiteral = { lat: 21.921427882183703 , lng: -102.29496958768634 };
@@ -63,21 +66,26 @@ export class MapaComponent implements AfterViewInit {
         fullscreenControl: false,
         mapTypeId: "satellite"
       });
-      const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      //const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-      const markers = locations.map((location, i) => {
+      var geocerca = new google.maps.Polygon({
+        paths: [],
+        editable: true
+      });
+      
+      /* const markers = locations.map((location, i) => {
         return new google.maps.Marker({
           position: location,
           label: labels[i % labels.length],
         });
-      });
-     new MarkerClusterer(map, markers, {
+      }); */
+    /*  new MarkerClusterer(map, markers, {
         imagePath:
           "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
-      });    
+      });     */
       //-- poligonos--//
       
-      const mytrip = [
+   /*    const mytrip = [
         { lat:  29.82427726324196 , lng: -110.2277761270849 },
         { lat: 29.92437726324196, lng: -110.3287761270849 },
         { lat: 29.72447726324196, lng: -110.4297761270849 },]
@@ -92,7 +100,7 @@ export class MapaComponent implements AfterViewInit {
       flightpath.addListener('mouseover',()=>{
         console.log("paso por la figura");
       });
-      flightpath.setMap(map);
+      flightpath.setMap(map); */
       
       // --- asignar variables de dibujo --- 
       const drawTools = new google.maps.drawing.DrawingManager({
@@ -103,16 +111,20 @@ export class MapaComponent implements AfterViewInit {
           drawingModes: [
             google.maps.drawing.OverlayType.MARKER,
             google.maps.drawing.OverlayType.POLYGON
+            
+            
           ],
         },
+        
         markerOptions: {
           icon: "../../../../assets/img/building.png",
-          draggable: true
+          draggable: true,
+          clickable:true
 
         },
         polygonOptions: {
-          fillColor: "#ffff00",
-          fillOpacity: 1,
+          fillColor: "#f43f01",
+          fillOpacity: 0.5,
           strokeWeight: 1,
           clickable: true,
           editable: true,
@@ -121,8 +133,24 @@ export class MapaComponent implements AfterViewInit {
 
         },
       });
+      
+      
+    /*   google.maps.event.addListener(drawTools, 'polygoncomplete', function(polygon) {
+        console.log(polygon.type)
+        drawTools.setOptions({
+          drawingMode: null,
+          drawingControlOptions: {
+            position: google.maps.ControlPosition.TOP_CENTER,
+            drawingModes: []
+          }
+        }); */
+
+      
+      
+      
 
 
+     
 
       drawTools.setMap(map);
     }
@@ -131,6 +159,7 @@ export class MapaComponent implements AfterViewInit {
 
 
   }
+
 
 
 }
