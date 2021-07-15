@@ -19,7 +19,7 @@ import { EditarRecursoComponent } from './components/dashboard/recursos/editar-r
 import { EliminarRecursoComponent } from './components/dashboard/recursos/eliminar-recurso/eliminar-recurso.component';
 import { EditarLugaresComponent } from './components/dashboard/lugares/editar-lugares/editar-lugares.component';
 import { UsuarioRecursoComponent} from '../app/components/dashboard/usuario-recurso/usuario-recurso.component';
-
+import { NuevoMovimientoComponent} from '../app/components/dashboard/usuario-recurso/nuevo-movimiento/nuevo-movimiento.component';
 
 const routes: Routes = [
   {path:"", redirectTo:'/inicio', pathMatch:'full'},
@@ -41,7 +41,8 @@ const routes: Routes = [
     {path: 'editarRecurso/:id', component:EditarRecursoComponent},
     {path: 'eliminarRecurso/:id', component:EliminarRecursoComponent},
     {path:'reporte', component:ReportesComponent},
-    {path: 'usuarioRecurso', component:UsuarioRecursoComponent}
+    {path: 'usuarioRecurso', component:UsuarioRecursoComponent},
+    {path: 'movimiento', component:NuevoMovimientoComponent}
   ]}
   ,
   {path:'**', redirectTo:'/inicio',pathMatch:'full'}
