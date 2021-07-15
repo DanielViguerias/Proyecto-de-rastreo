@@ -21,7 +21,7 @@ export class EditarRecursoComponent implements OnInit {
       this.editarform = this.fb.group({
       recursoId:new FormControl(''),
       nombre: new FormControl('',[Validators.required,Validators.maxLength(30)]),
-      tipo: new FormControl(''),
+      tipo: new FormControl(['',[Validators.required,Validators.maxLength(30)]]),
       active: new FormControl('')
 
     });
@@ -67,7 +67,7 @@ export class EditarRecursoComponent implements OnInit {
           console.log(data)
          
         })
-        this.router.navigate(['/dashboard/recurso'])
+        // this.router.navigate(['/dashboard/recurso'])
    
 
       } else if (result.isDenied) {

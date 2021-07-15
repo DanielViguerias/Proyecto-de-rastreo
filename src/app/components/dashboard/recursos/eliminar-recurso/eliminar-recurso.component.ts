@@ -57,7 +57,7 @@ export class EliminarRecursoComponent implements OnInit {
       if (result.isConfirmed) {
         Swal.fire(
           'Borrado!',
-          'El usuario ha sido eliminado.',
+          'El recurso ha sido eliminado.',
           'success'
         )
         let id = this.activateroute.snapshot.paramMap.get('id')
@@ -65,7 +65,7 @@ export class EliminarRecursoComponent implements OnInit {
           console.log(data)
      
     })
-    this.router.navigate(['/dashboard/recurso'])
+    // this.router.navigate(['/dashboard/recurso'])
     
       }
     })

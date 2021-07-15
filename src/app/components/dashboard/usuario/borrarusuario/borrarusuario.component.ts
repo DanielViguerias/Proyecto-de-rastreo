@@ -69,7 +69,7 @@ export class BorrarusuarioComponent implements OnInit {
       console.log(data)
      
     })
-    this.router.navigate(['/dashboard/usuario'])
+    // this.router.navigate(['/dashboard/usuario'])
       }
     })
   }

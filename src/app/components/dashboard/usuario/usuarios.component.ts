@@ -25,7 +25,7 @@ export class UsuariosComponent implements OnInit {
     this.usuarioservice.get_usuarios().subscribe(data => {
     this.usuarios = data;
     console.log(data);
-
+      
     
   })
 

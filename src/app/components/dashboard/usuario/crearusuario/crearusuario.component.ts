@@ -27,7 +27,7 @@ export class CrearusuarioComponent implements OnInit {
     private router:Router,
     private toastr:ToastrService) { 
     this.newuser = this.fb.group({
-      nombre:['',[Validators.required, Validators.maxLength(30)]],
+      nombre:(['',[Validators.required, Validators.maxLength(30)]]),
       password:['',[Validators.required, Validators.minLength(8), Validators.maxLength(16)]],
       correo:['',[Validators.required, Validators.email]],
       role:['',[Validators.required]]

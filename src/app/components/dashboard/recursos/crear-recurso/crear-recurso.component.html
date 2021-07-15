@@ -10,14 +10,14 @@
 
     <form [formGroup]="newRecurso" (ngSubmit)=enviar() >
         <div class="form-group">
-            <label for="nombrerecurso" style="margin-right: 67%;">Nombre del recurso</label>
-            <input  type="text" class="form-control" placeholder="Nombre" formControlName="nombre" maxlength="18">
+            <label for="nombrerecurso" style="margin-right: 100%;">Nombre</label>
+            <input  type="text" class="form-control" placeholder="Nombre" formControlName="nombre" maxlength="30">
             <span class="text-danger ml-2" *ngIf="newRecurso.controls['nombre'].errors?.required && newRecurso.controls['nombre'].touched ">
         Es necesario llenar el campo</span>
         </div>
             
         <div class="form-group" style="text-align: start;">
-            <label for="" style="margin-right: 64%;">Tipo de recurso</label>
+            <label for="" style="margin-right: 100%;">Categoría</label>
             <input type="text" class="form-control" placeholder="Tipo" formControlName="tipo" maxlength="30">
             <span class="text-danger ml-2" *ngIf="newRecurso.controls['tipo'].errors?.required && newRecurso.controls['tipo'].touched">
         Es necesario ingresar un tipo de recurso</span>

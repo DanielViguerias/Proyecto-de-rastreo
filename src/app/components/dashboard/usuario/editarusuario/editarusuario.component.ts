@@ -18,10 +18,10 @@ export class EditarusuarioComponent implements OnInit {
     ) {
       this.editarform = this.fb.group({
       usuarioid:new FormControl(''),
-      nombre: new FormControl(''),
-      correo: new FormControl(''),
-      password: new FormControl(''),
-      role:new FormControl('')
+      nombre: new FormControl(['',[Validators.required, Validators.maxLength(30)]]),
+      correo: new FormControl(['',[Validators.required, Validators.email, Validators.maxLength(30)]]),
+      password: new FormControl(['',[Validators.required,Validators.minLength(8), Validators.maxLength(16)]]),
+      role:new FormControl(['',[Validators.required]])
     });
    
     this.datosusuarios=[]
@@ -66,8 +66,7 @@ export class EditarusuarioComponent implements OnInit {
           console.log(data)
          
         })
-        this.router.navigate(['/dashboard/usuario'])
-   
+        // this.router.navigate(['/dashboard/usuario'])
 
       }
     })

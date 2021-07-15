@@ -19,8 +19,8 @@ export class CrearRecursoComponent implements OnInit {
     private router:Router,
     private toastr:ToastrService) { 
     this.newRecurso = this.fb.group({
-      nombre:['',[Validators.required]],
-      tipo:['',[Validators.required]],
+      nombre:['',[Validators.required,Validators.maxLength(30)]],
+      tipo:['',[Validators.required, Validators.maxLength(30)]],
     })
   }
 
