@@ -1,9 +1,17 @@
+import { PortalInjector } from '@angular/cdk/portal';
 import { AfterViewInit, Component } from '@angular/core';
 import MarkerClusterer from '@googlemaps/markerclustererplus';
 import { } from 'google.maps';
 import { map } from 'rxjs/operators';
+import { tokenGetter } from '../../../app.module';
+import { stringify } from '@angular/compiler/src/util';
+import { GuardsCheckStart } from '@angular/router';
 
+interface Lugar{
 
+  nombre:string,
+  geocerca: google.maps.Polygon
+}
 @Component({
   selector: 'app-mapa',
   templateUrl: './mapa.component.html',
@@ -14,7 +22,7 @@ export class MapaComponent implements AfterViewInit {
    lng = -102.35722068356765;
    zoom = 10; */
   
- 
+   
 
 
  
@@ -26,7 +34,15 @@ export class MapaComponent implements AfterViewInit {
     let map: google.maps.Map;
    //let center: [number, number] = [21.92146769460043, -102.29502323186493 ];
     let marcadores: google.maps.Marker[] = [];
-   
+    let geocercas: Lugar[]=[];
+    
+  
+    
+
+    geocercas = cargargeocercas()
+
+    
+    
     /* var locations = [
       { lat: -31.56391, lng: 147.154312 },
       { lat: -33.718234, lng: 150.363181 },
@@ -66,12 +82,41 @@ export class MapaComponent implements AfterViewInit {
         fullscreenControl: false,
         mapTypeId: "satellite"
       });
+      let poligono = new google.maps.Polygon({
+        fillColor: "#f43f01",
+          fillOpacity: 0.5,
+          strokeWeight: 1,
+          clickable: true,
+          editable: true,
+          zIndex: 1,
+          draggable: false
+      });
+      geocercas.forEach((element,index) => {
+    
+       // console.log(element.geocerca);
+  
+        let eke = element.geocerca[index]
+        let temp = new google.maps.Polygon({
+          paths:eke,
+          fillColor: "#f43f01",
+        fillOpacity: 0.5,
+        strokeWeight: 1,
+        clickable: true,
+        editable: true,
+        zIndex: 1,
+        draggable: false})
+        geocercas.push({'nombre':'nombre','geocerca':temp});
+        console.log(temp.getPaths);
+         
+        
+      });
+      
       //const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-      var geocerca = new google.maps.Polygon({
+    /*   var geocerca = new google.maps.Polygon({
         paths: [],
         editable: true
-      });
+      }); */
       
       /* const markers = locations.map((location, i) => {
         return new google.maps.Marker({
@@ -85,11 +130,11 @@ export class MapaComponent implements AfterViewInit {
       });     */
       //-- poligonos--//
       
-   /*    const mytrip = [
+       const paths = [
         { lat:  29.82427726324196 , lng: -110.2277761270849 },
         { lat: 29.92437726324196, lng: -110.3287761270849 },
         { lat: 29.72447726324196, lng: -110.4297761270849 },]
-      const flightpath = new google.maps.Polygon({
+     /* const flightpath = new google.maps.Polygon({
         paths: mytrip,
         strokeColor:"#0000FF",
         strokeOpacity:0.8,
@@ -104,15 +149,13 @@ export class MapaComponent implements AfterViewInit {
       
       // --- asignar variables de dibujo --- 
       const drawTools = new google.maps.drawing.DrawingManager({
-        drawingMode: google.maps.drawing.OverlayType.MARKER,
+        drawingMode: null,
         drawingControl: true,
         drawingControlOptions: {
           position: google.maps.ControlPosition.TOP_CENTER,
           drawingModes: [
             google.maps.drawing.OverlayType.MARKER,
             google.maps.drawing.OverlayType.POLYGON
-            
-            
           ],
         },
         
@@ -127,24 +170,45 @@ export class MapaComponent implements AfterViewInit {
           fillOpacity: 0.5,
           strokeWeight: 1,
           clickable: true,
-          editable: true,
+          editable: false,
           zIndex: 1,
           draggable: false
+          
 
         },
       });
-      
-      
-    /*   google.maps.event.addListener(drawTools, 'polygoncomplete', function(polygon) {
-        console.log(polygon.type)
-        drawTools.setOptions({
-          drawingMode: null,
-          drawingControlOptions: {
-            position: google.maps.ControlPosition.TOP_CENTER,
-            drawingModes: []
-          }
-        }); */
 
+      /* google.maps.event.addListener(drawTools, 'polygoncomplete', function(polygon) {
+        console.log(polygon.type)
+          
+        });  */
+       drawTools.setMap(map);
+
+       google.maps.event.addListener(drawTools, "polygoncomplete", function(polygon) {
+        
+       // console.log(polygon.latLngs.we[0].we);
+        var paths = polygon.latLngs.we[0].we;
+        
+        geocercas.push({
+       'nombre':'nuevo',
+       'geocerca':paths})
+       //console.log(geocercas)
+          
+       guardageocercas(JSON.stringify(geocercas));
+        
+        /* 
+            poligono.setPaths = event.latLngs.we[0].we;
+            console.log(event);
+          console.log(poligono.getPaths);
+          console.log(event.latLngs.we[0].we) */
+			});
+        
+     /*  google.maps.event.addListener(drawTools, "click", function(polygon) {
+				
+        geocercas.slice(polygon)
+        console.log(geocercas)
+       });
+ */
       
       
       
@@ -152,14 +216,33 @@ export class MapaComponent implements AfterViewInit {
 
      
 
-      drawTools.setMap(map);
+     
     }
 
+    
     initMap();
 
 
   }
+  
+  
 
+}
+function guardageocercas(guardar: string) {
+  localStorage.setItem('geocercas',guardar);
+}
 
+function cargargeocercas(){
+  
+  if (verificageocercas()!= null) {
+   return verificageocercas()
+  }
+  return
+}
 
+function verificageocercas(){
+  if(localStorage.getItem('geocercas')) {
+    return JSON.parse(localStorage.getItem('geocercas')!)
+  }
+  return null
 }
