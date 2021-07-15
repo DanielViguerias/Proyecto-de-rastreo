@@ -32,8 +32,15 @@ export class MapaComponent implements AfterViewInit {
     
   
     
-
     
+
+    // for(let i=0;cargageo.lengh<i;i++){
+    //   for(let j=0;cargageo[i].length;j++){
+    //     console.log(cargageo[0])    
+    //   }
+    // }
+
+    //console.log(cargageo)
 
     
     
@@ -56,9 +63,13 @@ export class MapaComponent implements AfterViewInit {
           editable: true,
           zIndex: 1,
           draggable: false,
-          paths:[]
+          paths:geocercas? geocercas:[]
       });
+     // let cargageo = cargargeocercas();
+
      
+
+      
       
       //const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -133,6 +144,35 @@ export class MapaComponent implements AfterViewInit {
         });  */
        drawTools.setMap(map);
 
+
+       if(cargargeocercas()){
+        let cargageo = cargargeocercas();
+         cargageo.forEach(element => {
+         
+          console.log(element);
+          
+          var pats = element.geocerca
+          
+          let poli = new google.maps.Polygon({
+             fillColor: "#f43f01",
+               fillOpacity: 0.5,
+               strokeWeight: 1,
+               clickable: true,
+               editable: false,
+               zIndex: 1,
+               draggable: false,
+               paths: pats
+           });
+           
+           geocercas.push({'nombre':'nombre','geocerca':pats})
+           //console.log(element);
+          // console.log(poli);
+           poli.setMap(map);
+     
+     
+         });
+       }
+       
        google.maps.event.addListener(drawTools, "polygoncomplete", function(polygon) {
         
        // console.log(polygon.latLngs.we[0].we);
@@ -141,8 +181,8 @@ export class MapaComponent implements AfterViewInit {
         geocercas.push({
        'nombre':'nuevo',
        'geocerca':paths})
-       console.log(geocercas)
-          
+       //console.log(geocercas)
+          console.log(geocercas)
        guardageocercas(JSON.stringify(geocercas));
         
         /* 
