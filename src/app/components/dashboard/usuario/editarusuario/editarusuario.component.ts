@@ -53,11 +53,9 @@ export class EditarusuarioComponent implements OnInit {
    
     Swal.fire({
       title: 'Deseas guardar los cambios?',
-      showDenyButton: true,
-      timer:3000,
+      showDenyButton: false,
       showCancelButton: true,
-      confirmButtonText: `Guardar`,
-      denyButtonText: `No guardar`,
+      confirmButtonText: `Guardar`
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
@@ -71,9 +69,6 @@ export class EditarusuarioComponent implements OnInit {
         this.router.navigate(['/dashboard/usuario'])
    
 
-      } else if (result.isDenied) {
-        Swal.fire('Los cambios no han sido guardados', '', 'info');timer:2500
-        location.reload()
       }
     })
   }

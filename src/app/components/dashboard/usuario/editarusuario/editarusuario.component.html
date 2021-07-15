@@ -7,25 +7,30 @@
                 <h1>Editar Usuario</h1>
     <form [formGroup]="editarform" (ngSubmit)="postform(editarform.value)">
         <div class="form-group">
-            <label for="exampleFormControlInput1"></label>
-            <input type="text" class="form-control"  placeholder=" Actualizar nombre" formControlName="usuarioid" readonly>
+            <label for="exampleFormControlInput1" style="margin-right: 100%;">ID</label>
+            <input type="text" class="form-control" formControlName="usuarioid" readonly>
     </div>
             <div class="form-group">
-                    <label for="exampleFormControlInput1"></label>
+                    <label for="exampleFormControlInput1"  style="margin-right: 100%;">Nombre</label>
                     <input type="text" class="form-control"  placeholder=" Actualizar nombre" formControlName="nombre">
             </div>
             <div class="form-group">
-                    <label for="exampleFormControlInput1"></label>
+                    <label for="exampleFormControlInput1"  style="margin-right: 100%;">Correo</label>
                     <input type="text" class="form-control"  placeholder="Actualizar correo" formControlName="correo">
-                </div>
+                </div><br>
                 <div class="form-group row">
                     <div class="col">
-                        <label for="exampleFormControlInput1"></label>
+                        <label for="exampleFormControlInput1">Contraseña</label>
                         <input type="text" class="form-control"  placeholder="Actualizar contraseña" formControlName="password">     
                     </div>
                     <div class="col">
-                        <label for="exampleFormControlInput1"></label>
-                        <input type="text" class="form-control"  placeholder="Actualizar rol" formControlName="role">     
+                        <label for="exampleFormControlInput1">Tipo de usuario</label>
+                        <mat-form-field appearance="legacy" >
+                            <mat-select formControlName="role">
+                              <mat-option value="admin">admin</mat-option>
+                              <mat-option value="usuario">usuario</mat-option>
+                            </mat-select>
+                          </mat-form-field>     
                     </div>
                    
                 </div>

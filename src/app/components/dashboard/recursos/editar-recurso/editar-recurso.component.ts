@@ -20,7 +20,7 @@ export class EditarRecursoComponent implements OnInit {
     ) {
       this.editarform = this.fb.group({
       recursoId:new FormControl(''),
-      nombre: new FormControl(''),
+      nombre: new FormControl('',[Validators.required,Validators.maxLength(30)]),
       tipo: new FormControl(''),
       active: new FormControl('')
 
@@ -53,8 +53,7 @@ export class EditarRecursoComponent implements OnInit {
   postform(form:putRecursosI){
     Swal.fire({
       title: 'Deseas guardar los cambios?',
-      showDenyButton: true,
-      timer:3000,
+      showDenyButton: false,
       showCancelButton: true,
       confirmButtonText: `Guardar`,
       denyButtonText: `No guardar`,

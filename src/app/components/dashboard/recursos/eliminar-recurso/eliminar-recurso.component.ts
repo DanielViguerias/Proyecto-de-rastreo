@@ -48,7 +48,7 @@ export class EliminarRecursoComponent implements OnInit {
       title: 'Estás seguro?',
       text: "No puedes revertir está acción!",
       icon: 'warning',
-      timer: 3000,
+      
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
