@@ -6,17 +6,30 @@ import { map } from 'rxjs/operators';
 import { tokenGetter } from '../../../app.module';
 import { stringify } from '@angular/compiler/src/util';
 import { GuardsCheckStart } from '@angular/router';
+import jwtDecode from 'jwt-decode';
 
 interface Lugar{
 
   nombre:string,
   geocerca: google.maps.Polygon
 }
+
+interface user{
+  aud: string,​
+  exp: number,
+  idUsuario: number,
+  ​iss: string,​
+  role: string,​
+  sub: string
+  }
 @Component({
   selector: 'app-mapa',
   templateUrl: './mapa.component.html',
   styleUrls: ['./mapa.component.css']
 })
+
+
+
 export class MapaComponent implements AfterViewInit {
 
 
@@ -108,6 +121,7 @@ export class MapaComponent implements AfterViewInit {
       flightpath.setMap(map); */
       
       // --- asignar variables de dibujo --- 
+
       const drawTools = new google.maps.drawing.DrawingManager({
         drawingMode: null,
         drawingControl: true,
@@ -142,7 +156,10 @@ export class MapaComponent implements AfterViewInit {
         console.log(polygon.type)
           
         });  */
-       drawTools.setMap(map);
+        if(IsAdmin()){
+          drawTools.setMap(map);
+        }
+       
 
 
        if(cargargeocercas()){
@@ -234,4 +251,24 @@ function verificageocercas(){
     return JSON.parse(localStorage.getItem('geocercas')!)
   }
   return null
+}
+
+function IsAdmin(){
+  let usuario: user;
+
+  var token = localStorage.getItem('auth_token');
+  var decode = jwtDecode(token!);
+  var decode2 = JSON.stringify(decode);
+  usuario = JSON.parse(decode2);
+ console.log("d",decode)
+ console.log("d2",decode2)
+ console.log("usuario",usuario)
+  //usuario = JSON.parse(decode);
+//   console.log(usuario.role);
+if(usuario.role == "admin"){
+  return true;
+}else{
+  return false;
+}
+  
 }
