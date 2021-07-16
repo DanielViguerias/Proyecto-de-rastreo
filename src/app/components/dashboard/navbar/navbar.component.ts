@@ -1,8 +1,18 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import jwtDecode from 'jwt-decode';
 import { AuthService } from 'src/app/services/data.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+
+interface user{
+aud: string,​
+exp: number,
+idUsuario: number,
+​iss: string,​
+role: string,​
+sub: string
+}
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +21,8 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class NavbarComponent implements OnInit {
 
+  
+
   constructor(private observer: BreakpointObserver,
     public usuarioservice:UsuarioService) { }
   @ViewChild(MatSidenav)
@@ -18,6 +30,10 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
   ngAfterViewInit() {
+
+    
+
+
     this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
       if (res.matches) {
         this.sidenav.mode = 'over';
@@ -27,7 +43,28 @@ export class NavbarComponent implements OnInit {
         this.sidenav.open();
       }
     });
+
+    
   } 
   
+public IsAdmin(){
+  let usuario: user;
+
+  var token = localStorage.getItem('auth_token');
+  var decode = jwtDecode(token!);
+  var decode2 = JSON.stringify(decode);
+  usuario = JSON.parse(decode2);
+ console.log("d",decode)
+ console.log("d2",decode2)
+ console.log("usuario",usuario)
+  //usuario = JSON.parse(decode);
+//   console.log(usuario.role);
+if(usuario.role == "admin"){
+  return true;
+}else{
+  return false;
+}
+  
+}
 
 }
