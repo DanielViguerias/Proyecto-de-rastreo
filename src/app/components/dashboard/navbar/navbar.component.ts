@@ -38,24 +38,6 @@ export class NavbarComponent implements OnInit {
 
     }
 
-<<<<<<< HEAD
-  var token = localStorage.getItem('auth_token');
-  var decode = jwtDecode(token!);
-  var decode2 = JSON.stringify(decode);
-  usuario = JSON.parse(decode2);
-//  console.log("d",decode)
-//  console.log("d2",decode2)
-//  console.log("usuario",usuario)
-  //usuario = JSON.parse(decode);
-//   console.log(usuario.role);
-if(usuario.role == "admin"){
-  return true;
-}else{
-  return false;
-}
-  
-}
-=======
     public IsAdmin() {
         let usuario: user;
 
@@ -70,6 +52,5 @@ if(usuario.role == "admin"){
         }
 
     }
->>>>>>> 831b6ea63dba7fe14e501444a277dd4f8df9d91a
 
 }
