@@ -41,12 +41,12 @@ log(form:usuario) {
         // if(dataresponse.Code == "ok"){
           this.loading = true;
           setTimeout(()=>{
-        
+       
         localStorage.setItem("auth_token",data.token)
         this.cookies.set("auth_token",data.token)
         this.cookies.get("auth_token")
         this.router.navigateByUrl('/dashboard')
-        this.toastr.success("Bienvenido")
+        this.toastr.success(`Bienvenido `)
           },3000)
 
         // }
