@@ -54,9 +54,9 @@ public IsAdmin(){
   var decode = jwtDecode(token!);
   var decode2 = JSON.stringify(decode);
   usuario = JSON.parse(decode2);
- console.log("d",decode)
- console.log("d2",decode2)
- console.log("usuario",usuario)
+//  console.log("d",decode)
+//  console.log("d2",decode2)
+//  console.log("usuario",usuario)
   //usuario = JSON.parse(decode);
 //   console.log(usuario.role);
 if(usuario.role == "admin"){

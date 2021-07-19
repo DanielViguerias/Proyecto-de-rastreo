@@ -9,7 +9,7 @@
     <h1>Crear nuevo recurso</h1>
 
     <form [formGroup]="newRecurso" (ngSubmit)=enviar() >
-        <div class="form-group">
+        <div class="form-group" style="text-align: start;">
             <label for="nombrerecurso" style="margin-right: 100%;">Nombre</label>
             <input  type="text" class="form-control" placeholder="Nombre" formControlName="nombre" maxlength="30">
             <span class="text-danger ml-2" *ngIf="newRecurso.controls['nombre'].errors?.required && newRecurso.controls['nombre'].touched ">
@@ -24,7 +24,7 @@
         </div>
           
         <button class="btn btn-primary mr-2 btn-login" type="submit" [disabled]="newRecurso.invalid">Registrar</button>
-        <button class="btn btn-secondary" style="margin: 10px" (click)="closeform()">Cancelar</button>
+        <button class="btn btn-secondary" style="margin: 10px" (click)="closeform()">Salir</button>
         
         
                 </form>

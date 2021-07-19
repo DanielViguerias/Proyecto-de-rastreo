@@ -21,7 +21,7 @@ export class EditarRecursoComponent implements OnInit {
       this.editarform = this.fb.group({
       recursoId:new FormControl(''),
       nombre: new FormControl('',[Validators.required,Validators.maxLength(30)]),
-      tipo: new FormControl(['',[Validators.required,Validators.maxLength(30)]]),
+      tipo: new FormControl('',[Validators.required,Validators.maxLength(30)]),
       active: new FormControl('')
 
     });

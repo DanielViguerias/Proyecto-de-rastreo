@@ -8,22 +8,21 @@
     <form [formGroup]="editarform" (ngSubmit)="postform(editarform.value)">
         <div class="form-group">
             <label for="exampleFormControlInput1" style="margin-right: 100%;">ID</label>
-            <input type="text" class="form-control"  placeholder=" Actualizar id" formControlName="recursoId" readonly>
+            <input type="text" class="form-control" formControlName="recursoId" readonly>
     </div>
-            <div class="form-group">
-               
-               <label for="exampleFormControlInput1" style="margin-right: 100%;">Nombre</label>
+            <div class="form-group" style="text-align: start;">
+                    <label for="exampleFormControlInput1" style="margin-right: 100%;">Nombre</label>
                     <input type="text" class="form-control"  placeholder=" Actualizar nombre" formControlName="nombre"  maxlength="30" required>
-                  
-                      
-            </div>
-            <div class="form-group">
+                    <span class="text-danger ml-2" *ngIf="editarform.controls['nombre'].errors?.required && editarform.controls['nombre'].touched ">
+                        Es necesario llenar el campo</span>
+              </div>
+                    <div class="form-group" style="text-align: start;">
                     <label for="exampleFormControlInput1" style="margin-right: 100%;">Categoría</label>
                     <input type="text" class="form-control"  placeholder="Actualizar tipo" formControlName="tipo" maxlength="30" required>
-                </div>
-               
-                <br><br>
-                <button type="submit" class="btn btn-primary" style="margin: 10px">Guardar</button>
+                    <span class="text-danger ml-2" *ngIf="editarform.controls['tipo'].errors?.required && editarform.controls['tipo'].touched">
+                        Es necesario ingresar un tipo de recurso</span>
+                    </div>
+                <button type="submit" class="btn btn-primary" style="margin: 10px" [disabled]="editarform.invalid">Guardar</button>
                 
                 <button type="button" class="btn btn-dark" style="margin-left: 10px" (click)="closeform()" >Salir</button>             
                  </form>

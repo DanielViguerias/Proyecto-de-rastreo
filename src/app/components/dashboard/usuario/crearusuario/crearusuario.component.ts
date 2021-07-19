@@ -52,7 +52,7 @@ export class CrearusuarioComponent implements OnInit {
       this.toastr.error(err)
       console.log(err)
     })
-   this.router.navigate(['/dashboard/usuario'])
+  //  this.router.navigate(['/dashboard/usuario'])
 }
 reload(){
   this.newuser.reset();

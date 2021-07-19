@@ -18,9 +18,9 @@ export class EditarusuarioComponent implements OnInit {
     ) {
       this.editarform = this.fb.group({
       usuarioid:new FormControl(''),
-      nombre: new FormControl(['',[Validators.required, Validators.maxLength(30)]]),
-      correo: new FormControl(['',[Validators.required, Validators.email, Validators.maxLength(30)]]),
-      password: new FormControl(['',[Validators.required,Validators.minLength(8), Validators.maxLength(16)]]),
+      nombre: new FormControl('',[Validators.required, Validators.maxLength(30)]),
+      correo: new FormControl('',[Validators.required, Validators.email, Validators.maxLength(30)]),
+      password: new FormControl('',[Validators.required,Validators.minLength(8), Validators.maxLength(16)]),
       role:new FormControl(['',[Validators.required]])
     });
    
