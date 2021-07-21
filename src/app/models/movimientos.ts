@@ -20,7 +20,7 @@ export interface MovimientosI{
       active?: boolean,
       movimientos?:[]
     },
-    fInicio?: any,
-    fFin?: any,
+    fInicio?: string,
+    fFin?: string,
     active?: boolean
   }

@@ -22,10 +22,11 @@ export class MovimientoService {
     let url = this.urlApi + "Usuario/" + id
     return this.http.get<putusuarioI>(url);
   }
-  post_movi(post: MovimientosI):Observable<MovimientosI>{
-    return this.http.post<MovimientosI>(this.urlApi,post)
-  }
   get_movimientos(): Observable<MovimientosI[]> {
     return this.http.get<MovimientosI[]>(this.urlApi + "Movimiento");
    }
+   crear_movimiento(post: MovimientosI): Observable<MovimientosI> {
+    return this.http.post<MovimientosI>(this.urlApi + 'Movimiento',post)
+  }
 }
+
