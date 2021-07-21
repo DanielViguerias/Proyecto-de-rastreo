@@ -20,7 +20,7 @@ export interface MovimientosI{
       active?: boolean,
       movimientos?:[]
     },
-    fInicio?: string,
+    fInicio?: "1997-08-19T18:00:00.000Z",
     fFin?: string,
     active?: boolean
   }
