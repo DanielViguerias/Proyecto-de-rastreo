@@ -2,6 +2,10 @@
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {DpDatePickerModule} from 'ng2-date-picker';
+import {MatInputModule} from '@angular/material/input';
+
+import {MatNativeDateModule} from '@angular/material/core';
 //modulos
 import { AppRoutingModule } from './app-routing.module';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -48,6 +52,7 @@ import { EliminarRecursoComponent } from './components/dashboard/recursos/elimin
 import { EditarLugaresComponent } from './components/dashboard/lugares/editar-lugares/editar-lugares.component';
 import { UsuarioRecursoComponent} from './components/dashboard/usuario-recurso/usuario-recurso.component';
 import { NuevoMovimientoComponent } from './components/dashboard/usuario-recurso/nuevo-movimiento/nuevo-movimiento.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 export function tokenGetter() {
   return localStorage.getItem("jwt");
 }
@@ -80,6 +85,9 @@ export function tokenGetter() {
   ],
   imports: [
     BrowserModule,
+    DpDatePickerModule,
+    MatInputModule,
+    MatNativeDateModule,
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -102,7 +110,8 @@ export function tokenGetter() {
       whitelistedDomains: ["localhost:5000"],
       blacklistedRoutes: []
     }
-  })
+  }),
+   NgbModule
    
   ],
   providers: [
