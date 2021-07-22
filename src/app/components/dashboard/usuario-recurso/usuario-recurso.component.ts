@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MovimientosI } from 'src/app/models/movimientos';
 import { MovimientoService } from 'src/app/services/movimientos';
 import { Router } from '@angular/router';
+import { Pipe, PipeTransform } from '@angular/core';
 
 
 

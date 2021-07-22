@@ -41,8 +41,31 @@
 
             </div>
         </div>
+                
+                <div class="form-group">
+                    <label for="fInicio">Fecha Inicio</label>
+                  <input type="text" class="form-control mb-3" placeholder="yyy/mm/dd" bsDatepicker formControlName="fInicio" />
+                  <pre *ngIf="asignarMovimiento.value.fInicio" class="code-preview">{{asignarMovimiento.value.fInicio}}</pre>
+                  <div *ngIf="f.fInicio.touched  && f.fInicio.invalid" class="alert alert-danger">
+                    <div *ngIf="f.fInicio.errors?.required">Fecha Inicio requerida</div>
+                  </div>
+
+        </div>
+
+        <!-- ////// -->
+        <div class=" form-group">
+            <label for="fInicio">Fecha Fin</label>
+          <input type="text" class="form-control mb-3" placeholder="yyy/mm/dd" bsDatepicker formControlName="fFin" />
+          <pre *ngIf="asignarMovimiento.value.fFin" class="code-preview">{{asignarMovimiento.value.fFin}}</pre>
+          <div *ngIf="f.fFin.touched  && f.fFin.invalid" class="alert alert-danger">
+            <div *ngIf="f.fFin.errors?.required">Fecha Fin requerida</div>
+          </div>
+    
+    </div>
+  
+        
         <button class="btn btn-primary" type="submit" [disabled]="!asignarMovimiento.valid">Registrar</button>
-        <button class="btn btn-secondary" style="margin: 10px" (click)="closeform()">Cancelar</button>
+        <button class="btn btn-secondary" style="margin: 10px" (click)="closeform()">Salir</button>
         
         
                 </form>

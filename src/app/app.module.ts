@@ -5,11 +5,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import {DpDatePickerModule} from 'ng2-date-picker';
 import {MatInputModule} from '@angular/material/input';
 
+
 import {MatNativeDateModule} from '@angular/material/core';
 //modulos
 import { AppRoutingModule } from './app-routing.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 
 import { ToastrModule } from 'ngx-toastr';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -86,6 +89,9 @@ export function tokenGetter() {
   imports: [
     BrowserModule,
     DpDatePickerModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot(),
     MatInputModule,
     MatNativeDateModule,
     FormsModule,

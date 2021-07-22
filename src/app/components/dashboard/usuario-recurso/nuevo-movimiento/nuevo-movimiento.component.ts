@@ -27,8 +27,8 @@ export class NuevoMovimientoComponent implements OnInit {
     this.asignarMovimiento = this.fb.group({
       usuarioid: new FormControl('', Validators.required),
       recursoId: new FormControl('', Validators.required),
-      // fInicio: new FormControl('', Validators.required),
-      // fFin: new FormControl('', Validators.required),
+      fInicio: new FormControl(null, Validators.required),
+      fFin: new FormControl('', Validators.required),
     })
   }
 
@@ -60,6 +60,13 @@ export class NuevoMovimientoComponent implements OnInit {
 
 
   enviar(){
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Usuario guardado con éxito',
+      showConfirmButton: false,
+      timer: 3000
+    })
     const asignacion = this.asignarMovimiento.value;
     console.log(asignacion);
 
