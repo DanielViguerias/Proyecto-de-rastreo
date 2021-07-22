@@ -1,13 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "CpGwXekYq0kL1ZXDiwAW0PKIgdmg3w8z6yIrzVh7bib8SS/d/vIfMKauGSWhq1Bpdp48ANkLvgv2IoqN7agjdg==",
+  "dgSpecHash": "7C91hFaouyk0HaVCECnjDyQY4U4EF+AcKDSHZIsTfZ4giwIHciuXuoMAOlmfJU3kkYPU3EzgsLtIOiCeGaTPHw==",
   "success": true,
   "projectFilePath": "C:\\Users\\xtr\\Desktop\\Proyecto\\Proyecto-de-rastreo\\bakend\\bakend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\xtr\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
     "C:\\Users\\xtr\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
-    "C:\\Users\\xtr\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.7\\microsoft.aspnet.webapi.client.5.2.7.nupkg.sha512",
-    "C:\\Users\\xtr\\.nuget\\packages\\microsoft.aspnet.webapi.core\\5.2.7\\microsoft.aspnet.webapi.core.5.2.7.nupkg.sha512",
     "C:\\Users\\xtr\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.7\\microsoft.aspnetcore.authentication.jwtbearer.5.0.7.nupkg.sha512",
     "C:\\Users\\xtr\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\xtr\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\5.0.7\\microsoft.aspnetcore.jsonpatch.5.0.7.nupkg.sha512",
@@ -146,16 +144,5 @@
     "C:\\Users\\xtr\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\xtr\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "El paquete \"Microsoft.AspNet.WebApi.Core 5.2.7\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\" en lugar de la plataforma de destino del proyecto \"net5.0\". Puede que el paquete no sea totalmente compatible con el proyecto.",
-      "libraryId": "Microsoft.AspNet.WebApi.Core",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    }
-  ]
+  "logs": []
 }

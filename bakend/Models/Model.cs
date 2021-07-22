@@ -117,12 +117,12 @@ namespace modelos
 
     }
 
-    [Index(nameof(GLId))]
+    [Index(nameof(LugarId))]
     public class punto{
         [Key]
         public int PuntoId{get; set;}
-        [ForeignKey("GLId")]
-        public int GLId {get; set;}
+        [ForeignKey("LugarId")]
+        public int LugarId {get; set;}
          [Required(ErrorMessage = "Se requiere latitud.")]
          [Column(TypeName = "decimal(9, 6)")]
         public decimal latitud {get;set;}

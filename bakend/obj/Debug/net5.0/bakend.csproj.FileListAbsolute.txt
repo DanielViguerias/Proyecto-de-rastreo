@@ -557,8 +557,6 @@ C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\bin\Debug\net5.0\ref\ba
 C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\bin\Debug\net5.0\bakend.pdb
 C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\bin\Debug\net5.0\BCrypt.Net-Next.dll
 C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\bin\Debug\net5.0\Humanizer.dll
-C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\bin\Debug\net5.0\System.Net.Http.Formatting.dll
-C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\bin\Debug\net5.0\System.Web.Http.dll
 C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\bin\Debug\net5.0\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\xtr\Desktop\Proyecto\Proyecto-de-rastreo\bakend\bin\Debug\net5.0\Microsoft.CodeAnalysis.dll
