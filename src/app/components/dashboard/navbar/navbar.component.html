@@ -1,0 +1,62 @@
+
+<header>
+    <mat-toolbar class="mat-elevation-z8">
+      <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+               
+          <mat-icon *ngIf="!sidenav.opened" >
+            menu
+        </mat-icon>
+      
+        <mat-icon *ngIf="sidenav.opened" >
+            close
+        </mat-icon>
+            
+    </button>
+      <span routerLink="home">Sukrasoft<mat-icon>business</mat-icon></span>
+  
+    </mat-toolbar>
+  </header>
+  
+  <mat-sidenav-container>
+  
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <mat-divider></mat-divider>
+    <button  [routerLink]="['home']" mat-button class="menu-button">
+      <mat-icon>home</mat-icon>
+      <span>Inicio</span>
+    </button>
+    <div *ngIf="IsAdmin()">
+    <button  [routerLink]="['usuario']" mat-button class="menu-button">
+     <mat-icon>person</mat-icon>
+     <span>Usuarios</span>
+   </button>  
+<button [routerLink]="['lugar']" mat-button class="menu-button">
+     <mat-icon>place</mat-icon>
+     <span>Lugares</span>
+   </button>
+<button [routerLink]="['recurso']" mat-button class="menu-button">
+     <mat-icon>phone</mat-icon>
+     <span>Recursos</span>
+   </button>
+
+   <button [routerLink]="['usuarioRecurso']" mat-button class="menu-button">
+    <mat-icon>assignment_turned_in</mat-icon>
+    <span>Usuarios/Recursos</span>
+  </button>
+    </div>
+   <button [routerLink]="['reporte']" mat-button class="menu-button">
+     <mat-icon>report</mat-icon>
+     <span>  Reportes</span>
+   </button>
+   <mat-divider></mat-divider>
+   <button [routerLink]="['inicio']" mat-button class="menu-button" (click)="usuarioservice.logout()">
+     <mat-icon>logout</mat-icon>
+     <span>Cerrar sesión</span>
+   </button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div>
+        <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+  </mat-sidenav-container>

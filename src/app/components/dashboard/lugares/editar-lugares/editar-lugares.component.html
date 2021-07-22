@@ -1,0 +1,33 @@
+<div class="img">
+    <br><br>
+<div class="container" style="padding-top: 50px; align-items: center; justify-content: center; min-height: 20vh;">
+        <div class="row" style="width: 100%;">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="card text-center" style="padding: 20px ;">
+                    <h1>Editar Lugares</h1>
+        <form [formGroup]="editarform" (ngSubmit)="postform(editarform.value)">
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="exampleFormControlInput1"></label>
+                    <input type="text" class="form-control"  placeholder=" Actualizar id" formControlName="lugarId" readonly>
+            </div>
+                <div class="form-group">
+                        <label for="exampleFormControlInput1"></label>
+                        <input type="text" class="form-control"  placeholder=" Actualizar nombre" formControlName="nombre">
+                </div>
+                <div class="form-group">
+                        <label for="exampleFormControlInput1"></label>
+                        <input type="text" class="form-control"  placeholder="Actualizar domicilio" formControlName="domicilio">
+                    </div>
+                       
+                    </div>
+                    <br><br>
+                    <button type="submit" class="btn btn-primary" style="margin: 10px" (click)="reload()">Guardar</button>
+                    
+                    <button type="button" class="btn btn-dark" style="margin-left: 10px" (click)="closeform()" >Salir</button>
+                    
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>

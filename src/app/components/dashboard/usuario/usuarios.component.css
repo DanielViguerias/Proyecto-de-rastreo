@@ -1,0 +1,15 @@
+
+ h1{
+    
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    font-size: 1.9em;
+  font-weight: 500;
+} 
+body{
+    padding: 5px;
+    /* The image used */
+    background-image: url(../../../../assets/fondo.jpeg) ;
+              /* Full height */
+              height: 100%;
+}

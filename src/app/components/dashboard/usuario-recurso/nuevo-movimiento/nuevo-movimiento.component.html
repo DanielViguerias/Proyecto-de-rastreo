@@ -1,0 +1,76 @@
+<div class="img">
+    <br><br>
+<div class="container" style="padding-top: 50px; align-items: center; justify-content: center; min-height: 20vh;">
+    <div class="row" style="width: 100%;">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card text-center" style="padding: 20px ;">
+
+    <h1>Nueva Asignación</h1>
+
+    <form [formGroup]="asignarMovimiento" (ngSubmit)="enviar()" >
+        <div class="form-group">
+
+            <label for="usuarioid">Usuario</label>
+
+            <select formControlName="usuarioid" class="form-control" (change)="changeUsuario($event)">
+
+                <option disabled>Seleccciona el usuario</option>
+                <option>Escoge el usuario</option>
+
+                <option *ngFor="let usuario of usuarioid" [value]="usuario.usuarioid">{{ usuario.nombre }}</option>
+
+            </select>
+            <div *ngIf="f.usuarioid.touched  && f.usuarioid.invalid" class="alert alert-danger">
+                <div *ngIf="f.usuarioid.errors?.required">Usuario es requerido</div>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="recursoId">Recurso</label>
+
+            <select formControlName="recursoId" class="form-control" (change)="changeUsuario($event)">
+
+                <option disabled>Seleccciona el recurso</option>
+                <option>Escoge el recurso</option>
+
+                <option *ngFor="let recurso of recursoId" [value]="recurso.recursoId">{{ recurso.nombre}}</option>
+
+            </select>
+            <div *ngIf="f.recursoId.touched  && f.recursoId.invalid" class="alert alert-danger">
+                <div *ngIf="f.recursoId.errors?.required">Recurso es requerido</div>
+
+            </div>
+        </div>
+                
+                <div class="form-group">
+                    <label for="fInicio">Fecha Inicio</label>
+                  <input type="text" class="form-control mb-3" placeholder="yyy/mm/dd" bsDatepicker formControlName="fInicio" />
+                  <pre *ngIf="asignarMovimiento.value.fInicio" class="code-preview">{{asignarMovimiento.value.fInicio}}</pre>
+                  <div *ngIf="f.fInicio.touched  && f.fInicio.invalid" class="alert alert-danger">
+                    <div *ngIf="f.fInicio.errors?.required">Fecha Inicio requerida</div>
+                  </div>
+
+        </div>
+
+        <!-- ////// -->
+        <div class=" form-group">
+            <label for="fInicio">Fecha Fin</label>
+          <input type="text" class="form-control mb-3" placeholder="yyy/mm/dd" bsDatepicker formControlName="fFin" />
+          <pre *ngIf="asignarMovimiento.value.fFin" class="code-preview">{{asignarMovimiento.value.fFin}}</pre>
+          <div *ngIf="f.fFin.touched  && f.fFin.invalid" class="alert alert-danger">
+            <div *ngIf="f.fFin.errors?.required">Fecha Fin requerida</div>
+          </div>
+    
+    </div>
+  
+        
+        <button class="btn btn-primary" type="submit" [disabled]="!asignarMovimiento.valid">Registrar</button>
+        <button class="btn btn-secondary" style="margin: 10px" (click)="closeform()">Salir</button>
+        
+        
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

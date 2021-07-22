@@ -1,0 +1,31 @@
+
+<body>
+  <div class="twelve columns text-center">
+    <h1>Asignaciones</h1>
+  </div>
+    <div class="container">
+        <button (click)="nuevo_movimiento()" type="button" class="btn btn-success">Agregar Asignación</button>
+    <br><br>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Usuario ID</th>
+              <th scope="col">Recurso ID</th>
+              <th scope="col">Fecha Inicio</th>
+              <th scope="col">Fecha Fin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let movimiento of movimientos">
+              <th scope="row">{{ movimiento.movId }}</th>
+              <td>{{ movimiento.usuarioId}}</td>
+              <td>{{ movimiento.recursoId }}</td>
+              <td>{{ movimiento.fInicio }}</td>
+              <td>{{ movimiento.fFin }}</td>
+            </tr>
+          </tbody>
+        </table><br>
+     </div><br><br>
+    </body>
+    

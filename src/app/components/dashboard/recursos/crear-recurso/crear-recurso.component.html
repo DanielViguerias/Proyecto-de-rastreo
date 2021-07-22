@@ -1,0 +1,39 @@
+
+<div class="img">
+    <br><br>
+<div class="container" style="padding-top: 50px; align-items: center; justify-content: center; min-height: 20vh;">
+    <div class="row" style="width: 100%;">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card text-center" style="padding: 20px ;">
+
+    <h1>Crear nuevo recurso</h1>
+
+    <form [formGroup]="newRecurso" (ngSubmit)=enviar() >
+        <div class="form-group" style="text-align: start;">
+            <label for="nombrerecurso" style="margin-right: 100%;">Nombre</label>
+            <input  type="text" class="form-control" placeholder="Nombre" formControlName="nombre" maxlength="30">
+            <span class="text-danger ml-2" *ngIf="newRecurso.controls['nombre'].errors?.required && newRecurso.controls['nombre'].touched ">
+        Es necesario llenar el campo</span>
+        </div>
+            
+        <div class="form-group" style="text-align: start;">
+            <label for="" style="margin-right: 100%;">Categoría</label>
+            <input type="text" class="form-control" placeholder="Tipo" formControlName="tipo" maxlength="30">
+            <span class="text-danger ml-2" *ngIf="newRecurso.controls['tipo'].errors?.required && newRecurso.controls['tipo'].touched">
+        Es necesario ingresar un tipo de recurso</span>
+        </div>
+          
+        <button class="btn btn-primary mr-2 btn-login" type="submit" [disabled]="newRecurso.invalid">Registrar</button>
+        <button class="btn btn-secondary" style="margin: 10px" (click)="closeform()">Salir</button>
+        
+        
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+    

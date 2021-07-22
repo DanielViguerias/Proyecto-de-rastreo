@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row" style="width: 100%;">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card text-center" style="padding: 20px ;">
+                <h3>Inicio de Sesión</h3>
+
+                <app-loading *ngIf="loading"></app-loading>
+                <form [formGroup]="login" (ngSubmit)="log(login.value)" style="padding-top: 10px;">
+                
+                    <div class="form-group" style="text-align: start;" >
+                        <input type="email" class="form-control" placeholder="example@gmail.com" formControlName="correo" maxlength="30">
+                        <span class="text-danger ml-2" *ngIf="login.controls['correo'].errors?.required && login.controls['correo'].touched">
+                    Es necesario ingresar un correo electrónico</span>
+                    </div>
+                    <div class="form-group" style="text-align: start;">
+                    <span class="text-danger ml-2" *ngIf="login.controls['correo'].errors?.email">
+                    Es necesario ingresar un correo electrónico</span>
+                </div>                       
+                    <div class="form-group" style="text-align: start;">
+                        <input  type="password" class="form-control" placeholder="Contraseña" formControlName="password" maxlength="16" minlength="8">
+                        <span class="text-danger ml-2" *ngIf="login.controls['password'].errors?.required && login.controls['password'].touched ">
+                    Es necesario ingresar una contraseña</span>
+                    </div>
+                    <div class="form-group" style="text-align: start;">
+                        <span class="text-danger ml-2" *ngIf="login.controls['password'].errors?.minlength">
+                        La contraseña debe de tener al menos 8 caracteres</span>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary mr-2 btn-login" type="submit" [disabled]="login.invalid">Aceptar</button>
+                        <button class="btn btn-secondary" routerLink='/inicio'>Volver</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<body>
+  <div class="twelve columns text-center">
+    <h1>Lugares</h1>
+  </div>
+  <div class="container">
+      <button routerLink="crearusuario" type="button" class="btn btn-success">Actualizar</button>
+      <br><br>
+  
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Domicilio</th>
+            <th scope="col">Latitud</th>
+            <th scope="col">Longitud</th>
+
+            <th width="200px">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let lugar of lugares">
+            <th scope="row">{{ lugar.lugarId }}</th>
+            <td>{{ lugar.nombre }}</td>
+            <td>{{ lugar.domicilio }}</td>
+            <td>{{ lugar.latitud }}</td>
+            <td>{{ lugar.longitud }}</td>
+            <td>
+              <button type="button" class="btn btn-outline-primary" (click)="editar_lugar(lugar.lugarId)">Editar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table> 
+   </div>
+  </body>
+
