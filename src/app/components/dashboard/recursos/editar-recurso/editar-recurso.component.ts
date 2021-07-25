@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { putRecursosI } from './../../../../models/recursoPut';
+import { RecursosI } from 'src/app/models/recursos.interface';
 import { Router,ActivatedRoute } from '@angular/router';
 import { RecursoService } from 'src/app/services/recursos.service';
 import { FormGroup,Validators,FormControl, FormBuilder } from '@angular/forms';
@@ -11,8 +12,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./editar-recurso.component.css']
 })
 export class EditarRecursoComponent implements OnInit {
+  
 
- 
+  recursos:Array<RecursosI>
   editarform:FormGroup;
    
   constructor(private router:Router,private activateroute:ActivatedRoute,
@@ -27,6 +29,7 @@ export class EditarRecursoComponent implements OnInit {
     });
    
     this.datosrecursos=[]
+    this.recursos = [];
      }
      datosrecursos:Array<putRecursosI>;
      
@@ -67,13 +70,16 @@ export class EditarRecursoComponent implements OnInit {
           console.log(data)
          
         })
-        // this.router.navigate(['/dashboard/recurso'])
-   
-
-      } else if (result.isDenied) {
-        Swal.fire('Los cambios no han sido guardados', '', 'info');timer:2500
-        location.reload()
       }
+       else if (result.isDenied) {
+        Swal.fire('Los cambios no han sido guardados', '', 'info');timer:2500
+      }
+      this.recursoservice.get_recursos().subscribe(data => {
+        this.recursos = data;
+        console.log(data);
+      })
+
+        this.router.navigateByUrl('/dashboard/recurso');
     })
   }
 closeform(){

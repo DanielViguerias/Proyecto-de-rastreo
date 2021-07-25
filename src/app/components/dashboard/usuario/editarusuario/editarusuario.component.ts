@@ -63,16 +63,19 @@ export class EditarusuarioComponent implements OnInit {
         let id = this.activateroute.snapshot.paramMap.get('id')
         Swal.fire('Se realizó con éxito!', '', 'success')
         this.userservice.putuser(form,id).subscribe(data =>{
-          console.log(data)
-         
-        })
-        // this.router.navigate(['/dashboard/usuario'])
-
+          console.log(data) ;
+        });
       }
-    })
+        this.userservice.get_usuarios().subscribe(data => {
+          this.datosusuarios = data;
+          console.log(data);
+          this.router.navigateByUrl('/dashboard/usuario');
+        })
+    });
   }
+  
 closeform(){
-  this.router.navigateByUrl('/dashboard/usuario')
+  this.router.navigateByUrl('/dashboard/usuario');
   this.editarform.reset()
 }
 

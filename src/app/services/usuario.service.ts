@@ -81,6 +81,18 @@ errorHandler(error: { error: { message: string; }; status: any; message: any; })
     let url = this.urlApi + "Usuario/" + id
     return this.http.put<putusuarioI>(url,form)
   }
+  deleteUser(form:putusuarioI,id:any):Observable<putusuarioI>{
+    let url = this.urlApi + "Usuario/" + id
+    let options = {
+      headers: new HttpHeaders({
+        'Content-type':'application/json'
+      }),
+      body:form
+    }
+    return this.http.delete<putusuarioI>(url,options);
+    
+
+  }
   get_user(id:any): Observable<putusuarioI>{
     let url = this.urlApi + "Usuario/" + id
     return this.http.get<putusuarioI>(url);
