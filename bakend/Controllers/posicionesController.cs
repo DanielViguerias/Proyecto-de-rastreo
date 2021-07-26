@@ -30,7 +30,11 @@ namespace bakend.Controllers
         {
             try
             {
-                return await _context.posiciones.ToListAsync();
+                return await _context.posiciones
+                .OrderByDescending(d=> d.FStamp)
+                .Distinct()
+                .ToArrayAsync();
+                //return await _context.posiciones.ToListAsync();
             }
             catch (Exception ex)
             {

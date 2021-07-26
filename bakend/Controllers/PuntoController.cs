@@ -38,8 +38,47 @@ namespace bakend.Controllers
             }
 
         }
+  // POST: api/Punto
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        //[ActionName(nameof(Postpunto))]
+        public async Task<ActionResult<punto>> Postpunto(punto punto)
+        {
+            try
+            {
+                _context.puntos.Add(punto);
+                await _context.SaveChangesAsync();
 
-        // GET: api/Punto/5
+                return CreatedAtAction("Getpunto", new { id = punto.PuntoId }, punto);
+            }
+            catch (Exception ex)
+            {
+                ELog.Add(ex.ToString());
+                return NotFound("Ocurrio un error al registrar el punto.");;
+            }
+
+        }
+        [HttpGet("geo/{id}")]
+        public async Task<IEnumerable<npunto>> GetpuntosLugar(int id)
+        {
+            // try
+            // {
+                
+                 var punto = await _context.puntos
+                 .FromSqlInterpolated($"SELECT * from dbo.puntos")
+                 .Where(b=> b.LugarId == id && b.active==true)
+                 .ToArrayAsync();
+//              
+                var dpunto = punto.Select(i => new npunto{
+
+                    lat = i.latitud,
+                    lng = i.longitud
+                }).ToArray();
+
+
+                return dpunto;
+        }
+      //  GET: api/Punto/5
         [HttpGet("{id}")]
         public async Task<ActionResult<punto>> Getpunto(int id)
         {
@@ -61,7 +100,7 @@ namespace bakend.Controllers
             }
 
         }
-
+        
         // PUT: api/Punto/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -95,40 +134,31 @@ namespace bakend.Controllers
             return Ok("Actualizado con exito");
         }
 
-        // POST: api/Punto
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<punto>> Postpunto(punto punto)
-        {
-            try
-            {
-                _context.puntos.Add(punto);
-                await _context.SaveChangesAsync();
-
-                return CreatedAtAction("Getpunto", new { id = punto.PuntoId }, punto);
-            }
-            catch (Exception ex)
-            {
-                ELog.Add(ex.ToString());
-                return NotFound("Ocurrio un error al registrar el punto.");;
-            }
-
-        }
-
+      
         // DELETE: api/Punto/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Deletepunto(int id)
         {
             try
             {
-                var punto = await _context.puntos.FindAsync(id);
-                if (punto == null || punto.active == false)
+                var punto = await _context.puntos.Where(b=> b.LugarId == id && b.active==true).ToArrayAsync();
+                if (punto == null)
                 {
                     return NotFound("Punto no encontrado");
                 }
-            punto.active = false;
-            _context.puntos.Update(punto);
-                await _context.SaveChangesAsync();
+                
+                foreach (var item in punto)
+                {
+                    item.active=false;
+                     _context.puntos.Update(item);
+                     await _context.SaveChangesAsync();
+                }
+                
+                
+          ;
+            //punto.active = false;
+            //_context.puntos.Update(punto);
+                
 
                 return Ok("Eliminado con exito");
             }

@@ -121,7 +121,6 @@ namespace modelos
     public class punto{
         [Key]
         public int PuntoId{get; set;}
-        [ForeignKey("LugarId")]
         public int LugarId {get; set;}
          [Required(ErrorMessage = "Se requiere latitud.")]
          [Column(TypeName = "decimal(9, 6)")]
@@ -167,4 +166,14 @@ namespace modelos
 
 
     }
+
+    public class npunto{
+         
+        public decimal lat {get;set;}
+      
+       
+        public decimal lng {get; set;}
+    }
+
+   
 }
