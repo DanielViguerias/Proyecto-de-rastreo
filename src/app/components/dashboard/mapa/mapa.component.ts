@@ -25,7 +25,8 @@ export class MapaComponent implements OnInit {
     arreglopuntos : punto[] = [];
     geo : Array < pto >= [];
     poli : google.maps.Polygon = new google.maps.Polygon;
-
+    gegeocercax: google.maps.Polygon[] = [];
+    mkr: google.maps.Marker= new google.maps.Marker;
 
     constructor(private map2service : MapaService) {}
 
@@ -84,10 +85,12 @@ export class MapaComponent implements OnInit {
             });
 
 
+
+
             if (IsAdmin()) {
                 drawTools.setMap(map);
             }
-
+            this.gegeocercax=[];
             this.map2service.getLugares().subscribe((data : sitio[]) => {
                 data.forEach(Lu => {
                     const contentString = 'contenido basico';
@@ -109,6 +112,7 @@ export class MapaComponent implements OnInit {
                             draggable: false,
                             paths: this.geogeo
                         });
+                        this.gegeocercax.push(this.poli);
                         this.poli.setMap(map);
                         this.geogeo = [];
                         google.maps.event.addListener(this.poli, 'mouseover', (polygon) => {
@@ -123,8 +127,8 @@ export class MapaComponent implements OnInit {
                         });
                        
                         //let lat = new google.maps.LatLng({ lat: 21.921288447172834  ,lng: -102.29500943840667});
-                        let lat = new google.maps.LatLng({ lat: 21.921266674731527 ,lng: -102.29528168260927});
-                        console.log(google.maps.geometry.poly.isLocationOnEdge( lat ,this.poli,0.0001),"polii",this.poli)
+                       // let lat = new google.maps.LatLng({ lat: 21.921266674731527 ,lng: -102.29528168260927});
+                       // console.log(google.maps.geometry.poly.isLocationOnEdge( lat ,this.poli,0.0001),"polii",this.poli)
                        
                        
                         google.maps.event.addListener(this.poli, "rightclick", (polygon) => {
@@ -151,6 +155,21 @@ export class MapaComponent implements OnInit {
                 console.log(error)
             });
 
+            google.maps.event.addListener(drawTools,'markercomplete',(event)=>{
+                //console.log(event, "evento crear marcador")
+                this.mkr  = event;
+                google.maps.event.addListener(event,'dragend',(x)=>{
+                    console.log(x, "marcador evento")
+                    this.gegeocercax.forEach((geoc)=>{
+                      // console.log(geoc,"cada poligono es")
+                       var ver = this.mkr.getPosition();
+                if(google.maps.geometry.poly.isLocationOnEdge( ver! ,geoc,0.0001)){
+                    alert("Ha ingresado al perimetro");
+                }
+                    })
+                });
+
+            });
 
             google.maps.event.addListener(drawTools, "polygoncomplete", async (polygon) => {
 
