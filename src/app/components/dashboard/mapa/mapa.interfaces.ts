@@ -15,16 +15,21 @@ export interface user {
     sub: string
 }
 export interface punto{
-    LugId: number,
-    lat: number,
-    lng: number
+    LugarId: number,
+    latitud: number,
+    longitud: number
 }
 
 export interface sitio{
-    lugarId?: number, 
+    lugarId: number, 
     nombre: string,
     domicilio: string,
     latitud?: number,
     longitud?: number,
     active?: boolean
+}
+
+export interface pto{
+    "latitud":number,
+    "longitud":number
 }
