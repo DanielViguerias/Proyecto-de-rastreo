@@ -64,7 +64,7 @@ export class MapaComponent implements OnInit {
                 },
 
                 markerOptions: {
-                    icon: "../../../../assets/img/building.png",
+                    icon: "../../../../assets/img/punto.png",
                     draggable: true,
                     clickable: true
 
