@@ -49,7 +49,7 @@ errorHandler(error: { error: { message: string; }; status: any; message: any; })
   return throwError(errorMessage);
 }
 putRecurso(form: putRecursosI,id:any):Observable<putRecursosI>{
-  // form.active = true;
+
   let url = this.urlApi + "Recurso/" + id;
   return this.http.put<putRecursosI>(url,form)
 }

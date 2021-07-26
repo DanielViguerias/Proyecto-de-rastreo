@@ -59,26 +59,32 @@ export class BorrarusuarioComponent implements OnInit {
       confirmButtonText: 'Si,estoy de acuerdo!'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Borrado!',
-          'El usuario ha sido eliminado.',
-          'success'
-        )
         let id = this.activateroute.snapshot.paramMap.get('id')
-    this.userservice.delete(form,id).subscribe(data =>{
-      console.log(data)
-     
-    })
-    // this.router.navigate(['/dashboard/usuario'])
-      }
-    })
+        this.userservice.delete(form,id).subscribe(data =>{
+        console.log(data);     
+    });
+    Swal.fire('Borrado!','El usuario ha sido eliminado.','success');
   }
+    }) 
+    this.router.navigateByUrl('/dashboard/usuario');
+   
+  }
+
+
+
   reload(){
-    location.reload()
-    this.borrarform.reset()
+    this.userservice.get_usuarios().subscribe(data => {
+      this.datosusuarios = data;
+       console.log(data);
+        });
+    this.router.navigateByUrl('/dashboard/usuario');
   }
 closeform(){
   this.router.navigateByUrl('/dashboard/usuario')
   
 }
 }
+
+
+
+

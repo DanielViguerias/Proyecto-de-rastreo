@@ -56,6 +56,8 @@ import { EditarLugaresComponent } from './components/dashboard/lugares/editar-lu
 import { UsuarioRecursoComponent} from './components/dashboard/usuario-recurso/usuario-recurso.component';
 import { NuevoMovimientoComponent } from './components/dashboard/usuario-recurso/nuevo-movimiento/nuevo-movimiento.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MovimientosPipe } from './components/dashboard/usuario-recurso/movimientos.pipe';
+
 export function tokenGetter() {
   return localStorage.getItem("jwt");
 }
@@ -82,7 +84,8 @@ export function tokenGetter() {
         EliminarRecursoComponent,
         EditarLugaresComponent,
         UsuarioRecursoComponent,
-        NuevoMovimientoComponent
+        NuevoMovimientoComponent,
+        MovimientosPipe
         
    
   ],
